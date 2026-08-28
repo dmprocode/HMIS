@@ -65,11 +65,23 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Chat </span>
+                            <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+                                <i class="uil-envelope"></i>
+                                <span> HMIS-Staff </span>
+                                <span class="menu-arrow"></span>
                             </a>
+                            <div class="collapse" id="sidebarEmail">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{route('staff-index')}}">Manage Staff</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-email-read.html">Read Email</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
+
 
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">

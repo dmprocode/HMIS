@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StaffModelController;
 use App\Http\Controllers\DepertmeantController;
 
 
@@ -19,5 +20,5 @@ use App\Http\Controllers\DepertmeantController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/staff-index',[StaffModelController::class,'staffIndex'])->name('staff-index');
 Route::get('/depertmeants',[DepertmeantController::class,'depertmeantIndex'])->name('depertmeant-index');
