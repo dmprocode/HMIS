@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaffModelController;
 use App\Http\Controllers\DepertmeantController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+
+
 
 
 
@@ -20,5 +24,15 @@ use App\Http\Controllers\DepertmeantController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/staff-index',[StaffModelController::class,'staffIndex'])->name('staff-index');
 Route::get('/depertmeants',[DepertmeantController::class,'depertmeantIndex'])->name('depertmeant-index');
+Route::get('/staff-index',[StaffModelController::class,'staffIndex'])->name('staff-index');
+Route::post('/add-staff', [StaffModelController::class, 'addStaff'])->name('add-staff');
+Route::post('/delete-staff',[StaffModelController::class,'deleteStaff'])->name('delete-staff');
+Route::post('/update-staff',[StaffModelController::class,'updateStaffData'])->name('update-staff-data');
+
+// ================Login Route===============
+Route::get('/Login-index',[AuthController::class,'loginIndex'])->name('login');
+Route::post('/login-data',[AuthController::class,'LoginData'])->name('user-login-data');
+
+Route::get('/admin-index',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isAdmin');
+
