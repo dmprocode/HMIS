@@ -32,8 +32,17 @@
                     <!-- Card Body - Reduced Padding -->
                     <div class="card-body p-3 p-xl-4 bg-white">
                         @if(session()->has('fail'))
-                              <h2>{{session()->get('fail')}}</h2>
-                         @endif
+                            <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 position-relative overflow-hidden" role="alert" id="failAlert">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="mdi mdi-alert-circle fs-4"></i>
+                                    <span>{{ session()->get('fail') }}</span>
+                                </div>
+                                <div class="position-absolute bottom-0 start-0 w-100" style="height: 3px;">
+                                    <div class="bg-danger" style="width: 100%; height: 100%; animation: shrink 5s linear forwards;"></div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         <!-- Welcome Section - Reduced -->
                         <div class="text-center mb-2">
                             <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-2 mb-1"

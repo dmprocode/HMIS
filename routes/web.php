@@ -34,5 +34,5 @@ Route::post('/update-staff',[StaffModelController::class,'updateStaffData'])->na
 Route::get('/Login-index',[AuthController::class,'loginIndex'])->name('login');
 Route::post('/login-data',[AuthController::class,'LoginData'])->name('user-login-data');
 
-Route::get('/admin-index',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isAdmin');
+Route::get('/admini-ndex',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isAdmin');
 

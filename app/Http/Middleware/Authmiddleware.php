@@ -14,10 +14,11 @@ class Authmiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
-    {   if (!session()->has('loginID')) {
-        return redirect()->route('login')->with('fail','access Denined');
-    }
+   public function handle(Request $request, Closure $next)
+    {
+        if (!session()->has('loginID')) {
+            return redirect()->route('login')->with('fail', 'Please login first to access this page.');
+        }
         return $next($request);
     }
 }
