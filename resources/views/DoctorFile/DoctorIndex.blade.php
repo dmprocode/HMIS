@@ -2,19 +2,10 @@
 @include('templeteController.SideNave');
 @include('templeteController.TopNave')
 <div class="row">
-
+    @if(session()->has('success'))
+     <h2>{{session()->get('success')}}</h2>
+    @endif
     <div class="col-12">
-<<<<<<< HEAD
-        <div class="card update-user-card">
-            <div class="card-body">
-                @if(session()->has('success'))
-                <h2>{{session()->get('success')}}</h2>
-                @endif
-
-               
-        
-        </div>
-=======
         <div class="card border-0 shadow-lg rounded-4">
     <div class="card-body p-4">
         
@@ -161,7 +152,6 @@
         
     </div>
 </div>
->>>>>>> 5bd2a13 (Fixing bags)
     </div> <!-- end card-->
 </div> <!-- end col -->
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\StaffModel;
 use Illuminate\Support\Facades\Hash; 
 
@@ -59,3 +60,10 @@ class AuthController extends Controller
 
     
 }
+=======
+
+class AuthController extends Controller
+{
+    
+}
+>>>>>>> 5bd2a13 (Fixing bags)

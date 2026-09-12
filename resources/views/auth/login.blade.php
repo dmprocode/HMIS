@@ -31,27 +31,13 @@
 
                     <!-- Card Body - Reduced Padding -->
                     <div class="card-body p-3 p-xl-4 bg-white">
-                        @if(session()->has('fail'))
-<<<<<<< HEAD
-                            <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 position-relative overflow-hidden" role="alert" id="failAlert">
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="mdi mdi-alert-circle fs-4"></i>
-                                    <span>{{ session()->get('fail') }}</span>
-                                </div>
-                                <div class="position-absolute bottom-0 start-0 w-100" style="height: 3px;">
-                                    <div class="bg-danger" style="width: 100%; height: 100%; animation: shrink 5s linear forwards;"></div>
-                                </div>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
-=======
-                              <h2>{{session()->get('fail')}}</h2>
+                        @if(session()->has('error'))
+                              <h2 class="text-danger">{{session()->get('error')}}</h2>
                          @endif
->>>>>>> 5bd2a13 (Fixing bags)
                         <!-- Welcome Section - Reduced -->
                         <div class="text-center mb-2">
                             <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-2 mb-1"
-                                style="width: 45px; height: 45px;">
+                                style="sdwidth: 45px; height: 45px;">
                                 <i
                                     class="mdi mdi-account-circle text-primary fs-3 d-flex align-items-center justify-content-center"></i>
                             </div>
@@ -61,7 +47,8 @@
                         </div>
 
                         <!-- Login Form -->
-                        <form action="{{route('user-login-data')}}" method="POST">
+                        <form method="POST" action="{{ route('login') }}">
+
                                 @csrf
                             <!-- Email Field - Reduced -->
                             <div class="mb-2">
@@ -74,15 +61,9 @@
                                         <i class="mdi mdi-email-outline text-muted" style="font-size: 14px;"></i>
                                     </span>
                                     <input class="form-control form-control border-start-0" type="email"
-<<<<<<< HEAD
-                                        id="emailaddress" name="emailaddress" placeholder="doctor@hospital.com" value="{{old('emailaddress')}}">
+                                        id="email" name="email" placeholder="doctor@hospital.com" value="{{old('email')}}">
                                 </div>
-                             <span class="text-danger">@error('emailaddress') {{$message}} @enderror</span>
-=======
-                                        id="email" name="email" placeholder="user@gmail.com" value="{{old('email')}}">
-                                </div>
-                             <span class="text-danger">@error('username') {{$message}} @enderror</span>
->>>>>>> 5bd2a13 (Fixing bags)
+                             <span class="text-danger">@error('email') {{$message}} @enderror</span>
 
                             </div>
 
