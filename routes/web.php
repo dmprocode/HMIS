@@ -42,7 +42,8 @@ Route::get('/logout-user',[AuthController::class,'logout'])->name('log-out');
 
 
 Route::get('/admin/dashboard', [AdminController::class, 'adminIndex'])->name('admin-dashboard');
-Route::get('/admin/staff', [AdminController::class, 'manageStaff'])->name('admin.staff');
+Route::get('super/dashboard' , [AdminController::class,'superAdmin'])->name('super-adimin')
+;Route::get('/admin/staff', [AdminController::class, 'manageStaff'])->name('admin.staff');
 
 
 Auth::routes();
