@@ -77,12 +77,6 @@ class LoginController extends Controller
     $request->session()->regenerate();
 
     // 7. Redirect based on role
-<<<<<<< HEAD
-    if ($admin->role === 'admin') {
-        return redirect()->route('admin-dashboard')
-            ->with('success', 'Welcome, ' . $admin->fname);
-    }
-=======
    
     if ($admin->role === 'super_admin') {
        return redirect()->route('super-adimin')->with('success','welcame');
@@ -92,7 +86,6 @@ class LoginController extends Controller
     }
 
     
->>>>>>> temp-branch
 
     return redirect()->route('home')->with('success', 'Login successful!');
 }
