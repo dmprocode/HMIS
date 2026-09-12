@@ -1,11 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 use App\Models\StaffModel;
 use Illuminate\Support\Facades\Hash; 
 
@@ -62,14 +58,9 @@ class AuthController extends Controller
 
     
 }
-=======
->>>>>>> temp-branch
 
 class AuthController extends Controller
 {
     
 }
-<<<<<<< HEAD
-=======
->>>>>>> 5bd2a13 (Fixing bags)
->>>>>>> temp-branch
+

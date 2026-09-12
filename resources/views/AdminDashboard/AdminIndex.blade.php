@@ -4,9 +4,6 @@
 <div class="row">
 
     <div class="col-12">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         <div class="card update-user-card">
             <div class="card-body">
                 @if(session()->has('success'))
@@ -16,8 +13,6 @@
                
         
         </div>
-=======
->>>>>>> temp-branch
         <div class="card border-0 shadow-lg rounded-4">
     <div class="card-body p-4">
         
@@ -164,10 +159,6 @@
         
     </div>
 </div>
-<<<<<<< HEAD
-=======
->>>>>>> 5bd2a13 (Fixing bags)
->>>>>>> temp-branch
     </div> <!-- end card-->
 </div> <!-- end col -->
 

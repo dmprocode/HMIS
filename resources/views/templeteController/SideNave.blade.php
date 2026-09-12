@@ -326,34 +326,21 @@
                         </li>
 
                         <li class="side-nav-item">
-<<<<<<< HEAD
                             <a href="" class="side-nav-link d-flex align-items-center gap-2 px-3 py-2 rounded-3 transition-all">
-=======
-<<<<<<< HEAD
                             <a href="" 
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
                             class="side-nav-link d-flex align-items-center gap-2 px-3 py-2 rounded-3 transition-all">
-=======
-                            <a href="" class="side-nav-link d-flex align-items-center gap-2 px-3 py-2 rounded-3 transition-all">
->>>>>>> 5bd2a13 (Fixing bags)
->>>>>>> temp-branch
+
                                 <i class="uil-sign-out-alt text-danger fs-5"></i>
                                 <span class="fw-semibold text-danger">Logout</span>
                                 <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-2 py-1 ms-auto">
                                     <i class="mdi mdi-power-standby"></i>
                                 </span>
                             </a>
-<<<<<<< HEAD
+
                            
-=======
-<<<<<<< HEAD
-                            <form id="logout-form" action="" method="POST" class="d-none">
-                                @csrf
-                            </form>
-=======
                            
->>>>>>> 5bd2a13 (Fixing bags)
->>>>>>> temp-branch
+
                         </li>
                     </ul>
                 </div>
