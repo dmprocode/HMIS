@@ -50,8 +50,8 @@ Route::middleware(['auth:admin', 'is_admin'])->prefix('admin')->group(function (
     Route::get('/dashboard', [AdminController::class, 'adminIndex'])->name('admin-dashboard');
 });
 // Super Admin
-Route::middleware(['auth:admin', 'is_SuperAdmin'])->prefix('super-sdmin')->group(function () {
-   Route::get('/dashboard' , [AdminController::class,'superAdmin'])->name('super-adimin');
+Route::middleware(['auth:admin', 'is_SuperAdmin'])->prefix('super')->group(function () {
+   Route::get('/dashboard' , [AdminController::class,'superAdmin'])->name('super-admin');
 });
 
 
