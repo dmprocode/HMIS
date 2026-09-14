@@ -41,12 +41,20 @@ Route::post('/login-data',[LoginController::class,'login'])->name('user-login-da
 Route::get('/logout-user',[AuthController::class,'logout'])->name('log-out');
 
 
-Route::get('/admin/dashboard', [AdminController::class, 'adminIndex'])->name('admin-dashboard');
-Route::get('super/dashboard' , [AdminController::class,'superAdmin'])->name('super-adimin')
-;Route::get('/admin/staff', [AdminController::class, 'manageStaff'])->name('admin.staff');
+Route::get('/admin/staff', [AdminController::class, 'manageStaff'])->name('admin.staff');
 
 
 Auth::routes();
+//  Admin  route
+Route::middleware(['auth:admin', 'is_admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'adminIndex'])->name('admin-dashboard');
+});
+// Super Admin
+Route::middleware(['auth:admin', 'is_SuperAdmin'])->prefix('super-sdmin')->group(function () {
+   Route::get('/dashboard' , [AdminController::class,'superAdmin'])->name('super-adimin');
+});
+
+
 
 // routes/web.php
 Route::get('/home', [HomeController::class, 'index'])->name('home');

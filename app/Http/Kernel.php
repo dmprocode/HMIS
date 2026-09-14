@@ -69,6 +69,8 @@ class Kernel extends HttpKernel
         // ======================My new route==========================
         'is_doctor' => \App\Http\Middleware\doctorMiddleware::class,
         'is_Receptionist' => \App\Http\Middleware\Receptionist::class,
+        'is_admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'is_SuperAdmin' => \App\Http\Middleware\SuperAdminMiddleware::class,
 
     ];
 }
