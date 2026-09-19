@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class StaffModel extends Model
 {
     use HasFactory;
+    protected $table = 'staff_models';
+     protected $fillable = [
+        'fname',
+        'lname',
+        'userEmail',
+        'userrole',
+        'password',
+        'phone'
+        
+    ];
 }
