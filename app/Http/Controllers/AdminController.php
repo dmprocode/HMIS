@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Depertmeant;
 use App\Models\StaffModel;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -31,6 +31,44 @@ class AdminController extends Controller
     
         
     }
+
+  public function addUser(Request $request)
+{
+    $validated = $request->validate([
+        'fname'        => 'required|string|min:2|max:50',
+        'lname'        => 'required|string|min:2|max:50',
+        'userEmail'    => 'required|email|unique:admins,username|max:100',
+        'userImage'    => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        'phone'        => 'required|string|regex:/^[0-9]{10,15}$/|unique:admins,phone',
+        'gender'       => 'required',
+        'user_status'  => 'required|in:active,inactive,suspended',
+        'userrole'     => 'required|in:admin,doctor,receptionist,user',
+    ]);
+
+    $imagePath = null;
+
+    if ($request->hasFile('userImage')) {
+        $imagePath = $request->file('userImage')->store('users', 'public');
+    }
+    $password = Hash::make('password123');
+
+    $admin = Admin::create([
+        'fname' => $request->fname,
+        'lname' => $request->lname,
+        'username' => $request->userEmail,
+        'userImage' => $imagePath,
+        'phone' => $request->phone,
+        'gender' => $request->gender,
+        'user_status' => $request->user_status,
+        'userrole' => $request->userrole,
+        'password' => $password,
+
+    ]);
+    return redirect()->route('user.index')->with('success', 'User added successfully!');
+
+    
+
+}
 
     public function userIndex(){
         return view('AdminDashboard.AddUser');

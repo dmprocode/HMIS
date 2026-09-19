@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogoutController;
+
 
 
 
@@ -60,7 +62,9 @@ Route::middleware(['auth:admin', 'is_SuperAdmin'])
 
 Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function () {
     Route::get('index', [AdminController::class, 'adminIndex'])->name('admin.index');
-    Route::get('r-useindex', [AdminController::class, 'userIndex'])->name('user.index');
+    Route::get('user-index', [AdminController::class, 'userIndex'])->name('user.index');
+    Route::post('add-user', [AdminController::class, 'addUser'])->name('user.add');
+
 
 });
 

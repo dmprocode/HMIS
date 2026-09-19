@@ -158,16 +158,5 @@
 
 
 </div>
-
-<script>
-    // Handle back button using pageshow (better than popstate)
-    window.addEventListener('pageshow', function (event) {
-        // If page loaded from cache (back/forward button)
-        if (event.persisted) {
-            // Reload from server → server re-checks auth
-            window.location.reload();
-        }
-    });
-</script>
-
+@include('AdminDashboard.AdminScript');
 @include('templeteController.Footer');

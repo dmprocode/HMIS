@@ -5,22 +5,8 @@
 
 
     <div class="col-12">
-        <div
-            class="manage-staff-titile  d-flex align-items-center justify-content-between p-3 bg-light rounded-3 border border-2 border-info mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <span class="text-danger fs-4">👥</span>
-                <h5 class="mb-0 fw-semibold">Staff Members</h5>
-                <span class="badge bg-danger rounded-pill fs-6 px-3 py-1">12</span>
-            </div>
-            <a href="javascript:void(0);"
-                class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1 px-3 py-1.5 rounded-3 border-2 fw-semibold add-staff-btn ">
-                <i class="mdi mdi-plus-circle fs-6"></i>
-                Add Staff Member
-            </a>
 
-
-        </div>
-<!-- 
+        <!-- 
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show shadow-sm border-start border-5 border-success"
             role="alert">
@@ -37,24 +23,89 @@
         </div>
         @endif -->
 
-        <div class="card staff-table shadow-sm">
-            <div class="card-body p-0">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom">
+            <!-- Page Title -->
+            <div>
+                <h4 class="page-title fw-bold text-primary mb-1">
+                    <i class="mdi mdi-account-group me-2"></i>Admin  Details
+                </h4>
+                <p class="text-muted mb-0 small">Manage and view all staff member information</p>
+            </div>
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 bg-light px-3 py-2 rounded-pill shadow-sm">
+                    <li class="breadcrumb-item">
+                        <a href="{{route('admin.index')}}" class="text-decoration-none">
+                            <i class="mdi mdi-home me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:void(0);" class="text-decoration-none">
+                            <i class="mdi mdi-shield-account me-1"></i>Admin
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active fw-semibold" aria-current="page">
+                        <i class="mdi mdi-table me-1"></i>User Table
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="card admin-table shadow-sm">
+            <div class="card-body p-2">
+                <div
+                    class="manage-staff-titile  d-flex align-items-center justify-content-between p-3 bg-light rounded-3 border border-2 border-info mb-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="text-danger fs-4">👥</span>
+                        <h5 class="mb-0 fw-semibold">Staff Members</h5>
+                        <span class="badge bg-danger rounded-pill fs-6 px-3 py-1">12</span>
+                    </div>
+                    <a href="javascript:void(0);"
+                        class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1 px-3 py-1.5 rounded-3 border-2 fw-semibold add-user-btn ">
+                        <i class="mdi mdi-plus-circle fs-6"></i>
+                        Add Staff Member
+                    </a>
+
+
+                </div>
                 <div class="table-responsive p-2">
                     <div class="table-responsive">
-                        <table class="table table-centered table-nowrap mb-0">
-                            <thead class="table-light">
+                        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                            <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th class="border-0"> First name</th>
-                                    <th class="border-0">Last name</th>
-                                    <th class="border-0">User Email</th>
-                                    <th class="border-0">User role</th>
-                                    <th class="border-0">Member since</th>
-                                    <th class="border-0" style="width: 80px;">Action</th>
+                                    <th>Names</th>
+                                    <th>Usename</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
+                                    <th>Address</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
+
+
                             <tbody>
-                                
+                                <tr>
+                                    <td>2</td>
+                                    <td>Daniel Mathias</td>
+                                    <td>danny@gmail.com</td>
+                                    <td>0712343032</td>
+                                    <td>Male</td>
+                                    <td>Moshi</td>
+                                    <td>Admin</td>
+                                    <td>Active</td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                class="mdi mdi-eye"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                class="mdi mdi-delete"></i></a></span></li>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -66,15 +117,18 @@
         <div class="card admin-form-add shadow-sm">
 
             <div class="card shadow-lg border-0">
-                <div class="card-header bg-gradient bg-success text-white py-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="mdi mdi-account-plus fs-4"></i>
-                        <h5 class="mb-0 fw-bold">Add New Staff Member</h5>
-                        <span class="badge bg-light text-danger ms-auto">Required *</span>
+                <div class="card-header bg-gradient  text-white py-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button
+                            class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                            <i class="mdi mdi-account-plus fs-4"></i>
+                            <span class="fw-bold">View Staff Member</span>
+                            <span class="badge bg-danger text-white ms-2 rounded-pill">14</span>
+                        </button>
                     </div>
                 </div>
                 <div class="card-body p-4">
-                    <form action="{{route('add-staff')}}" method="POST" class="needs-validation" novalidate>
+                    <form action="{{route('user.add')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row g-3">
@@ -87,8 +141,10 @@
                                     </label>
                                     <input type="text" id="fname" name="fname"
                                         class="form-control form-control-sm border-2" placeholder="Enter first name"
-                                        required>
-                                    <div class="invalid-feedback">Please enter first name.</div>
+                                        value="{{old('fname')}}">
+                                    @error('fname')
+                                    <i class="text-danger">{{ $message }}</i>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -101,8 +157,8 @@
                                     </label>
                                     <input type="text" id="lname" name="lname"
                                         class="form-control form-control-sm border-2" placeholder="Enter last name"
-                                        required>
-                                    <div class="invalid-feedback">Please enter last name.</div>
+                                        value="{{old('lname')}}">
+                                    <i class="text-danger">@error('lname') {{$message}} @enderror .</i>
                                 </div>
                             </div>
 
@@ -115,21 +171,23 @@
                                     </label>
                                     <input type="email" id="userEmail" name="userEmail"
                                         class="form-control form-control-sm border-2" placeholder="Enter email address"
-                                        required>
+                                        value="{{old('userEmail')}}">
+                                    <div class="invalid-feedback">Please Enter eamil Address.</div>
                                     <i class="text-danger">@error('userEmail') {{$message}} @enderror .</i>
+
 
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="userEmail" class="form-label fw-semibold">
+                                    <label for="userImage" class="form-label fw-semibold">
                                         <i class="mdi mdi-email text-success me-1"></i>
                                         User image <span class="text-danger">*</span>
                                     </label>
                                     <input type="file" id="userImage" name="userImage"
-                                        class="form-control form-control-sm border-2" >
-                                    <i class="text-danger">@error('userEmail') {{$message}} @enderror .</i>
+                                        class="form-control form-control-sm border-2" value="{{old('userImage')}}">
+                                    <i class="text-danger">@error('userImage') {{$message}} @enderror .</i>
 
                                 </div>
                             </div>
@@ -142,9 +200,9 @@
                                         Phone Number <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" id="phone" name="phone"
-                                        class="form-control form-control-sm border-2" placeholder="Enter email address"
-                                        required>
-                                    <div class="invalid-feedback">Phone number is Required.</div>
+                                        class="form-control form-control-sm border-2" value="{{old('phone')}}">
+                                    <div class="invalid-feedback">Phone number is .</div>
+                                    <i class="text-danger">@error('phone') {{$message}} @enderror .</i>
                                 </div>
                             </div>
 
@@ -154,12 +212,34 @@
                                         <i class="mdi mdi-gender-male-female text-success me-1"></i>
                                         Gender <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select form-select-sm border-2" name="" id=""
-                                        required>
-                                        <option value="" selected disabled>Male</option>
-                                        <option value="admin">Female</option>
+                                    <select class="form-select form-select-sm border-2" name="gender" id="gender"
+                                        value="{{old('phone')}}">
+                                        <option value="" selected disabled>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
                                     </select>
                                     <div class="invalid-feedback">Please select gender.</div>
+                                    <i class="text-danger">@error('gender') {{$message}} @enderror .</i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label fw-semibold">
+                                        <i class="mdi mdi-check-circle text-success me-1"></i>
+                                        Status <span class="text-danger">*</span>
+                                    </label>
+
+                                    <select class="form-select form-select-sm border-2" name="user_status"
+                                        id="user_status" value="{{old('user_status')}}">
+                                        <option value="" selected disabled>Select user status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">In nactive</option>
+                                        <option value="suspended">Suspended</option>
+
+
+                                    </select>
+                                    <i class="text-danger">@error('user_status') {{$message}} @enderror .</i>
+
                                 </div>
                             </div>
 
@@ -171,7 +251,7 @@
                                         User Role <span class="text-danger">*</span>
                                     </label>
                                     <select class="form-select form-select-sm border-2" name="userrole" id="userrole"
-                                        required>
+                                        value="{{old('userrole')}}">
                                         <option value="" selected disabled>Select user role</option>
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
@@ -179,26 +259,13 @@
                                         <option value="pharmacy">Pharmacy Technician</option>
                                         <option value="receptionist">Receptionist</option>
                                     </select>
-                                    <div class="invalid-feedback">Please select a role.</div>
+                                    <i class="text-danger">@error('userrole') {{$message}} @enderror .</i>
+
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="status" class="form-label fw-semibold">
-                                        <i class="mdi mdi-badge-account text-success me-1"></i>
-                                        User Status <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-select form-select-sm border-2" name="status" id="status">
-                                        <option value="" selected disabled>Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="not_active">Not Active</option>
-                                        
-                                    </select>
-                                    <div class="invalid-feedback">Please selects status.</div>
-                                </div>
-                           </div>
                         </div>
+
+
 
                         <!-- Submit Buttons -->
                         <div class="d-flex gap-2 mt-4 pt-3 border-top">
@@ -220,14 +287,14 @@
 
         </div>
 
-<!-- =======================Update staff Data================ -->
-        <div class="card update-staff-data shadow-sm">
+        <!-- =======================Update staff Data================ -->
+        <div class="card update-admin-data shadow-sm">
 
             <div class="card shadow-lg border-0">
                 <div class="card-header bg-gradient bg-success text-white py-3">
                     <div class="d-flex align-items-center gap-2">
                         <i class="mdi mdi-account-edit fs-4"></i>
-                        <h5 class="mb-0 fw-bold">Update  Staff Data</h5>
+                        <h5 class="mb-0 fw-bold">Update Staff Data</h5>
                     </div>
                 </div>
                 <div class="card-body p-4">
@@ -244,8 +311,8 @@
                                         First Name <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" id="fname" name="fname"
-                                        class="form-control form-control-sm border-2 up-fname" placeholder="Enter first name"
-                                        required>
+                                        class="form-control form-control-sm border-2 up-fname"
+                                        placeholder="Enter first name">
                                     <div class="invalid-feedback">Please enter first name.</div>
                                 </div>
                             </div>
@@ -258,8 +325,8 @@
                                         Last Name <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" id="lname" name="lname"
-                                        class="form-control form-control-sm border-2 up-lname" placeholder="Enter last name"
-                                        required>
+                                        class="form-control form-control-sm border-2 up-lname"
+                                        placeholder="Enter last name">
                                     <div class="invalid-feedback">Please enter last name.</div>
                                 </div>
                             </div>
@@ -272,8 +339,8 @@
                                         Email Address <span class="text-danger">*</span>
                                     </label>
                                     <input type="email" id="userEmail" name="userEmail"
-                                        class="form-control form-control-sm border-2 up-user-mail" placeholder="Enter email address"
-                                        required>
+                                        class="form-control form-control-sm border-2 up-user-mail"
+                                        placeholder="Enter email address">
                                     <div class="invalid-feedback">Please enter user email.</div>
 
 
@@ -288,9 +355,9 @@
                                         Phone Number <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" id="phone" name="phone"
-                                        class="form-control form-control-sm border-2 up-phone-number" placeholder="Enter phone number"
-                                        required>
-                                    <div class="invalid-feedback">Phone number is Required.</div>
+                                        class="form-control form-control-sm border-2 up-phone-number"
+                                        placeholder="Enter phone number">
+                                    <div class="invalid-feedback">Phone number is .</div>
                                 </div>
                             </div>
 
@@ -300,10 +367,11 @@
                                         <i class="mdi mdi-gender-male-female text-success me-1"></i>
                                         Gender <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select form-select-sm border-2" name="gender" id="gender"
-                                        required>
-                                        <option value="" selected disabled>Male</option>
-                                        <option value="admin">Female</option>
+                                    <select class="form-select form-select-sm border-2" name="gender" id="gender">
+                                        <option value="" selected disabled>Select Gender</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+
                                     </select>
                                     <div class="invalid-feedback">Please select gender.</div>
                                 </div>
@@ -316,8 +384,8 @@
                                         <i class="mdi mdi-badge-account text-success me-1"></i>
                                         User Role <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select form-select-sm border-2 up-user-role" name="userrole" id="userrole"
-                                        required>
+                                    <select class="form-select form-select-sm border-2 up-user-role" name="userrole"
+                                        id="userrole">
                                         <option value="" selected disabled>Select user role</option>
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
@@ -343,7 +411,7 @@
                 </div>
             </div>
 
-            </form> 
+            </form>
         </div>
     </div>
     <!-- =======+End Staff Form=============  -->
@@ -353,5 +421,5 @@
 
 
 </div>
-@include('StaffFolder.staffScript')
+@include('AdminDashboard.adminScript')
 @include('templeteController.Footer');
