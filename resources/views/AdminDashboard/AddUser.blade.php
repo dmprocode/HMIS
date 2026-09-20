@@ -27,13 +27,13 @@
             <!-- Page Title -->
             <div>
                 <h4 class="page-title fw-bold text-primary mb-1">
-                    <i class="mdi mdi-account-group me-2"></i>Admin  Details
+                    <i class="mdi mdi-account-group me-2"></i>Admin Details
                 </h4>
                 <p class="text-muted mb-0 small">Manage and view all staff member information</p>
             </div>
 
             <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb mb-0">
                 <ol class="breadcrumb mb-0 bg-light px-3 py-2 rounded-pill shadow-sm">
                     <li class="breadcrumb-item">
                         <a href="{{route('admin.index')}}" class="text-decoration-none">
@@ -45,9 +45,10 @@
                             <i class="mdi mdi-shield-account me-1"></i>Admin
                         </a>
                     </li>
-                    <li class="breadcrumb-item active fw-semibold" aria-current="page">
+                    <li class="breadcrumb-item active fw-semibold pages-links" aria-current="page">
                         <i class="mdi mdi-table me-1"></i>User Table
                     </li>
+
                 </ol>
             </nav>
         </div>
@@ -59,10 +60,12 @@
                     <div class="d-flex align-items-center gap-3">
                         <span class="text-danger fs-4">👥</span>
                         <h5 class="mb-0 fw-semibold">Staff Members</h5>
-                        <span class="badge bg-danger rounded-pill fs-6 px-3 py-1">12</span>
+                        <span
+                            class="badge bg-danger rounded-pill fs-6 px-3 py-1">{{$adminComponents['numOfUser']}}</span>
                     </div>
                     <a href="javascript:void(0);"
-                        class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1 px-3 py-1.5 rounded-3 border-2 fw-semibold add-user-btn ">
+                        class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1 px-3 py-1.5 rounded-3 border-2 fw-semibold add-user-btn"
+                        id="addStaffBtn">
                         <i class="mdi mdi-plus-circle fs-6"></i>
                         Add Staff Member
                     </a>
@@ -79,7 +82,6 @@
                                     <th>Usename</th>
                                     <th>Phone</th>
                                     <th>Gender</th>
-                                    <th>Address</th>
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -88,24 +90,47 @@
 
 
                             <tbody>
+                                @foreach($adminComponents['adminData'] as $key=>$user)
                                 <tr>
-                                    <td>2</td>
-                                    <td>Daniel Mathias</td>
-                                    <td>danny@gmail.com</td>
-                                    <td>0712343032</td>
-                                    <td>Male</td>
-                                    <td>Moshi</td>
+                                    <td>{{$key+ 1}}</td>
+                                    <td>{{$user->fname}} {{$user->lname}}</td>
+                                    <td>{{$user->username}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->gender}}</td>
+
+                                    @if($user->role == 'admin')
                                     <td>Admin</td>
-                                    <td>Active</td>
+                                    @elseif($user->role == 'super_admin')
+                                    <td>Super Admin</td>
+                                    @else($user->role == 'moderator')
+                                    <td>Moderator</td>
+                                    @endif
+                                    
+
+                                    @if($user->is_active == 1)
                                     <td>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-eye"></i></a>
+                                        <span
+                                            class="badge bg-success bg-opacity-10 text-success border border-success rounded-pill px-2 py-1">
+                                            <i class="mdi mdi-check-circle me-1"></i> Active
+                                        </span>
+                                    </td>
+                                    @else
+                                    <td>
+                                        <span
+                                            class="badge bg-danger bg-opacity-10 text-danger border border-danger rounded-pill px-2 py-1">
+                                            <i class="mdi mdi-close-circle me-1"></i> Suspended
+                                        </span>
+                                    </td>
+                                    @endif
+                                    <td>
+                                        
                                         <a href="javascript:void(0);" class="action-icon"> <i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-delete"></i></a></span></li>
+                                        <a href="javascript:void(0);" class="action-icon "> <i
+                                                class="mdi mdi-delete delete-user" data-id = '{{$user->id}}'></i></a></span></li>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -120,10 +145,11 @@
                 <div class="card-header bg-gradient  text-white py-3">
                     <div class="d-flex align-items-center justify-content-between">
                         <button
-                            class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                            class="btn btn-primary rounded-pill px-4 py-2 view-staff-member shadow-sm d-inline-flex align-items-center gap-2">
                             <i class="mdi mdi-account-plus fs-4"></i>
                             <span class="fw-bold">View Staff Member</span>
-                            <span class="badge bg-danger text-white ms-2 rounded-pill">14</span>
+                            <span
+                                class="badge bg-danger text-white ms-2 rounded-pill">{{$adminComponents['numOfUser']}}</span>
                         </button>
                     </div>
                 </div>

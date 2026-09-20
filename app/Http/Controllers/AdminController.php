@@ -23,7 +23,7 @@ class AdminController extends Controller
         }
 
         $adminDashboard = [
-            'numberOfStaff' => StaffModel::count(),
+            'numOfUser' => Admin::count(),
             'admin'         => $admin,   
         ];
 
@@ -71,7 +71,24 @@ class AdminController extends Controller
 }
 
     public function userIndex(){
-        return view('AdminDashboard.AddUser');
+        $numOfUser = Admin::count();
+        $adminData =  Admin::latest()->get();
+        $adminComponents = [
+            'numOfUser' => $numOfUser,
+            'adminData' => $adminData,
+        ] ;
+
+        return view('AdminDashboard.AddUser',compact('adminComponents'));
+    }
+
+    public function deleteUser(Request $request){
+       $userId = $request->userId;
+        if ($userId) {
+            $admin = Admin::find($userId)->delete();
+            return response()->json([
+                'message' => 'User Deleted Successfully'
+            ]);
+        }
     }
 
     public function superAdmin(){
