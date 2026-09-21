@@ -31,6 +31,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/logout', [LogoutController::class, 'logout'])
     ->name('logout')
     ->middleware('auth:admin');  
+    
 
 
 Route::get('/depertmeants',[DepertmeantController::class,'depertmeantIndex'])->name('depertmeant-index');
@@ -65,6 +66,7 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
     Route::get('user-index', [AdminController::class, 'userIndex'])->name('user.index');
     Route::post('add-user', [AdminController::class, 'addUser'])->name('user.add');
     Route::post('delete-user',[AdminController::class,'deleteUser'])->name('delete-user');
+    Route::get('edit-user/{id}',[AdminController::class,'editUserData'])->name('user-edit');
 
 
 });

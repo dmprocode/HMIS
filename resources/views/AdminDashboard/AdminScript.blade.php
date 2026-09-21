@@ -31,26 +31,89 @@
     let userId = $(this).data('id');
     let row    = $(this).closest('tr');   // Save row for removal
 
-    
-
-    $.ajax({
-        url: "{{ route('delete-user') }}",
-        method: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",   
-            userId: userId,
-        },
-        dataType: 'json',                    
-        success: function (res) {
-            
-          
-        },
-        error: function (xhr, status, error) {
-            console.error('Error:', xhr.responseText);
-            alert('Something went wrong. Please try again.');
-        }
-    });
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
 });
+
+swalWithBootstrapButtons.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+
+}).then((result) => {
+
+    if (result.isConfirmed) {
+
+        $.ajax({
+            url: "{{ route('delete-user') }}",
+            method: "POST",
+
+            data: {
+                _token: "{{ csrf_token() }}",
+                userId: userId
+            },
+
+            dataType: "json",
+
+            success: function (res) {
+
+                // Show success message AFTER database deletion
+                swalWithBootstrapButtons.fire({
+                    title: "Deleted!",
+                    text: res.message,
+                    icon: "success"
+                });
+                setTimeout(() => {
+                    location.reload()
+                }, 1000);
+
+            },
+
+            error: function (xhr, status, error) {
+
+                console.error("Error:", xhr.responseText);
+
+                swalWithBootstrapButtons.fire({
+                    title: "Error!",
+                    text: "Something went wrong. Please try again.",
+                    icon: "error"
+                });
+
+            }
+        });
+
+    }
+
+    else if (result.dismiss === Swal.DismissReason.cancel) {
+
+        swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "User was not deleted.",
+            icon: "error"
+        });
+
+    }
+
+});
+
+
+});
+
+
+// ===end of deleting user Data
+
+ $(document).on('click','.edit-user-btn', function(e){
+    e.preventDefault()
+    
+ })
 });
 
 

@@ -6,7 +6,7 @@
 
     <div class="col-12">
 
-        <!-- 
+        
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show shadow-sm border-start border-5 border-success"
             role="alert">
@@ -21,8 +21,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
-        @endif -->
-
+        @endif 
+        
+       @if(session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                <i class="mdi mdi-alert-circle-outline fs-4 me-2"></i>
+                <div class="flex-grow-1">{{ session()->get('error') }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+         
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom">
             <!-- Page Title -->
             <div>
@@ -124,7 +132,7 @@
                                     @endif
                                     <td>
                                         
-                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                        <a href="{{route('user-edit', $user->id)}}" class="action-icon"> <i
                                                 class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon "> <i
                                                 class="mdi mdi-delete delete-user" data-id = '{{$user->id}}'></i></a></span></li>
