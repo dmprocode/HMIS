@@ -110,8 +110,31 @@ swalWithBootstrapButtons.fire({
 
 // ===end of deleting user Data
 
- $(document).on('click','.edit-user-btn', function(e){
+ $(document).on('click','.update-user', function(e){
     e.preventDefault()
+        $('.admin-table').hide();
+        $('.update-admin-data').show()
+
+    let user_id = $(this).data('id')
+    let fname = $(this).data('fname')
+    let lname = $(this).data('lname')
+    let username = $(this).data('username')
+    let phone = $(this).data('phone')
+    let gender = $(this).data('gender')
+    let role = $(this).data('role')
+    let is_active = $(this).data('is_active')
+
+    $('#up_id').val(user_id)
+    $('#up_fname').val(fname)
+    $('#up_lname').val(lname)
+    $('#up_userEmail').val(username)
+    $('#up_phone').val(phone)
+    $('#up_gender').val(gender)
+    $('#up_userrole').val(role)
+    $('.up-user-status').val(is_active)
+
+
+
     
  })
 });

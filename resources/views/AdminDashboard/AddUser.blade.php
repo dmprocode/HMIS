@@ -132,10 +132,24 @@
                                     @endif
                                     <td>
                                         
-                                        <a href="{{route('user-edit', $user->id)}}" class="action-icon"> <i
-                                                class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="javascript:void(0)" class="action-icon"> <i
+                                                class="mdi mdi-square-edit-outline update-user"
+                                                 data-id = '{{$user->id}}'
+                                                data-fname = '{{$user->fname}}'
+                                                data-lname = '{{$user->lname}}'
+                                                data-username = '{{$user->username}}'
+                                                data-phone = '{{$user->phone}}'
+                                                data-gender = '{{$user->gender}}'
+                                                data-role = '{{$user->role}}'
+                                                data-is_active = '{{$user->is_active}}'></i></a>
                                         <a href="javascript:void(0);" class="action-icon "> <i
-                                                class="mdi mdi-delete delete-user" data-id = '{{$user->id}}'></i></a></span></li>
+                                                class="mdi mdi-delete delete-user" 
+                                                data-id = '{{$user->id}}'
+                                                
+                                                
+                                                
+                                                
+                                                ></i></a></span></li>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -160,6 +174,7 @@
                                 class="badge bg-danger text-white ms-2 rounded-pill">{{$adminComponents['numOfUser']}}</span>
                         </button>
                     </div>
+                    
                 </div>
                 <div class="card-body p-4">
                     <form action="{{route('user.add')}}" method="POST" enctype="multipart/form-data">
@@ -325,17 +340,22 @@
         <div class="card update-admin-data shadow-sm">
 
             <div class="card shadow-lg border-0">
-                <div class="card-header bg-gradient bg-success text-white py-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="mdi mdi-account-edit fs-4"></i>
-                        <h5 class="mb-0 fw-bold">Update Staff Data</h5>
+                <div class="card-header bg-gradient  text-white py-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button
+                            class="btn btn-primary rounded-pill px-4 py-2 view-staff-member shadow-sm d-inline-flex align-items-center gap-2">
+                            <i class="mdi mdi-account-plus fs-4"></i>
+                            <span class="fw-bold">View Staff Member</span>
+                            <span
+                                class="badge bg-danger text-white ms-2 rounded-pill">{{$adminComponents['numOfUser']}}</span>
+                        </button>
                     </div>
+                    
                 </div>
                 <div class="card-body p-4">
-                    <input type="hidden" id="up_id">
-                    <form action="{{route('add-staff')}}" method="POST" class="needs-validation" novalidate>
+                    <form  method="POST" enctype="multipart/form-data">
                         @csrf
-
+                           <input type="hidden" id="up_id">
                         <div class="row g-3">
                             <!-- First Name -->
                             <div class="col-md-6">
@@ -344,24 +364,26 @@
                                         <i class="mdi mdi-account text-success me-1"></i>
                                         First Name <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" id="fname" name="fname"
-                                        class="form-control form-control-sm border-2 up-fname"
-                                        placeholder="Enter first name">
-                                    <div class="invalid-feedback">Please enter first name.</div>
+                                    <input type="text" id="up_fname" name="up_fname"
+                                        class="form-control form-control-sm border-2" placeholder="Enter first name"
+                                        value="{{old('fname')}}">
+                                    @error('fname')
+                                    <i class="text-danger">{{ $message }}</i>
+                                    @enderror
                                 </div>
                             </div>
 
                             <!-- Last Name -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="lname" class="form-label  fw-semibold">
+                                    <label for="lname" class="form-label fw-semibold">
                                         <i class="mdi mdi-account text-success me-1"></i>
                                         Last Name <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" id="lname" name="lname"
-                                        class="form-control form-control-sm border-2 up-lname"
-                                        placeholder="Enter last name">
-                                    <div class="invalid-feedback">Please enter last name.</div>
+                                    <input type="text" id="up_lname" name="up_lname"
+                                        class="form-control form-control-sm border-2" placeholder="Enter last name"
+                                        value="{{old('lname')}}">
+                                    <i class="text-danger">@error('lname') {{$message}} @enderror .</i>
                                 </div>
                             </div>
 
@@ -372,14 +394,17 @@
                                         <i class="mdi mdi-email text-success me-1"></i>
                                         Email Address <span class="text-danger">*</span>
                                     </label>
-                                    <input type="email" id="userEmail" name="userEmail"
-                                        class="form-control form-control-sm border-2 up-user-mail"
-                                        placeholder="Enter email address">
-                                    <div class="invalid-feedback">Please enter user email.</div>
+                                    <input type="email" id="up_userEmail" name="up_userEmail"
+                                        class="form-control form-control-sm border-2" placeholder="Enter email address"
+                                        value="{{old('userEmail')}}">
+                                    <div class="invalid-feedback">Please Enter eamil Address.</div>
+                                    <i class="text-danger">@error('userEmail') {{$message}} @enderror .</i>
 
 
                                 </div>
                             </div>
+
+                            
 
 
                             <div class="col-md-6">
@@ -388,26 +413,47 @@
                                         <i class="mdi mdi-phone text-success me-1"></i>
                                         Phone Number <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" id="phone" name="phone"
-                                        class="form-control form-control-sm border-2 up-phone-number"
-                                        placeholder="Enter phone number">
+                                    <input type="text" id="up_phone" name="up_phone"
+                                        class="form-control form-control-sm border-2" value="{{old('phone')}}">
                                     <div class="invalid-feedback">Phone number is .</div>
+                                    <i class="text-danger">@error('phone') {{$message}} @enderror .</i>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-3 d-none">
+                                <div class="mb-3">
                                     <label for="userEmail" class="form-label fw-semibold">
                                         <i class="mdi mdi-gender-male-female text-success me-1"></i>
                                         Gender <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select form-select-sm border-2" name="gender" id="gender">
+                                    <select class="form-select form-select-sm border-2" name="up_gender" id="up_gender"
+                                        value="{{old('phone')}}">
                                         <option value="" selected disabled>Select Gender</option>
-                                        <option value="female">Female</option>
                                         <option value="male">Male</option>
-
+                                        <option value="female">Female</option>
                                     </select>
                                     <div class="invalid-feedback">Please select gender.</div>
+                                    <i class="text-danger">@error('gender') {{$message}} @enderror .</i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label fw-semibold">
+                                        <i class="mdi mdi-check-circle text-success me-1"></i>
+                                        Status <span class="text-danger">*</span>
+                                    </label>
+
+                                    <select class="form-select form-select-sm border-2 up-user-status" name="up_user_status"
+                                        id="up_user_status" value="{{old('user_status')}}">
+                                        <option value="" selected disabled>Select user status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">In nactive</option>
+                                        <option value="suspended">Suspended</option>
+
+
+                                    </select>
+                                    <i class="text-danger">@error('user_status') {{$message}} @enderror .</i>
+
                                 </div>
                             </div>
 
@@ -418,8 +464,8 @@
                                         <i class="mdi mdi-badge-account text-success me-1"></i>
                                         User Role <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select form-select-sm border-2 up-user-role" name="userrole"
-                                        id="userrole">
+                                    <select class="form-select form-select-sm border-2" name="up_userrole" id="up_userrole"
+                                        value="{{old('userrole')}}">
                                         <option value="" selected disabled>Select user role</option>
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
@@ -427,17 +473,20 @@
                                         <option value="pharmacy">Pharmacy Technician</option>
                                         <option value="receptionist">Receptionist</option>
                                     </select>
-                                    <div class="invalid-feedback">Please select a role.</div>
+                                    <i class="text-danger">@error('userrole') {{$message}} @enderror .</i>
+
                                 </div>
                             </div>
                         </div>
 
+
+
                         <!-- Submit Buttons -->
                         <div class="d-flex gap-2 mt-4 pt-3 border-top">
-                            <button type="submit" class="btn btn-info btn-sm px-5 update-staff-data-btn">
-                                <i class="mdi mdi-update me-2"></i> Update Staff
+                            <button type="submit" class="btn btn-info btn-sm px-5">
+                                <i class="mdi mdi-check me-2"></i> Update User
                             </button>
-                            <button type="reset" class="btn btn-outline-secondary cancel-btn-update btn-lg px-4">
+                            <button type="reset" class="btn btn-outline-secondary btn-lg px-4 " id="cancel-btn-add">
                                 <i class="mdi mdi-close me-2"></i> Cancel
                             </button>
                         </div>
@@ -446,6 +495,10 @@
             </div>
 
             </form>
+
+
+
+
         </div>
     </div>
     <!-- =======+End Staff Form=============  -->

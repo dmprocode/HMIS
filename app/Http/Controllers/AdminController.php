@@ -91,15 +91,8 @@ class AdminController extends Controller
         }
     }
 
- public function editUserData($id){
-    $admin = Admin::findOrFail($id);
-    if (auth('admin')->user()->userrole !== 'admin' 
-        && auth('admin')->id() !== $admin->id) {
-        return redirect()->route('user.index')->with('error', 'You are not authorized to edit this user.');
-    }
-   
-    return response()->json($admin);
-}
+ 
+
 
     public function superAdmin(){
         return  view('SuperAdminDashboard.dashboard');
