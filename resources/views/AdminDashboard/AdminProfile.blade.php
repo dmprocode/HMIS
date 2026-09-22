@@ -167,55 +167,78 @@
 
                         <!-- ============ TAB 1: PROFILE ============ -->
                         <div class="tab-pane fade show active" id="tab-profile">
-                            <h5 class="fw-bold mb-4">
-                                <i class="mdi mdi-account-edit-outline me-1 text-primary"></i>
-                                Edit Profile Information
-                            </h5>
+                            <button type="button" class="btn btn-primary rounded-pill fw-bold mb-4 px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                                <i class="mdi mdi-account-edit-outline fs-5"></i>
+                                <span>Edit Profile Information</span>
+                            </button>
 
                             <form>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">First Name</label>
-                                        <input type="text" class="form-control" value="John">
+                                        <input type="text" class="form-control" value="{{$userProfile->fname}}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Last Name</label>
-                                        <input type="text" class="form-control" value="Doe">
+                                        <input type="text" class="form-control" value="{{$userProfile->lname}}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Username</label>
-                                        <input type="text" class="form-control" value="johndoe">
+                                        <input type="text" class="form-control" value="{{$userProfile->username}}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Email</label>
-                                        <input type="email" class="form-control" value="johndoe@hospital.com">
+                                        <input type="email" class="form-control" value="{{$userProfile->username}}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Phone</label>
-                                        <input type="text" class="form-control" value="+255 712 345 678">
+                                        <input type="text" class="form-control" value="{{$userProfile->phone}}">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label fw-semibold">Date of Birth</label>
-                                        <input type="date" class="form-control" value="1990-06-15">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label fw-semibold">Gender</label>
+                                        <label class="form-label fw-semibold" value="{{$userProfile->gender}}">Gender</label>
                                         <select class="form-select">
                                             <option>Male</option>
                                             <option>Female</option>
                                             <option>Other</option>
                                         </select>
-                                    </div>
+                                    </div>   
+
+                                    @if(empty($userProfile->dob))
+                                            {{-- No date set --}}
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="mdi mdi-calendar me-1 text-primary"></i> Date of Birth
+                                                </label>
+                                                <input type="date" 
+                                                    class="form-control rounded-pill shadow-sm"
+                                                    name="dob"
+                                                    placeholder="Select date"
+                                                    value="">
+                                                <small class="text-muted">No date set</small>
+                                            </div>
+                                        @else
+                                            {{-- Date exists --}}
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="mdi mdi-calendar-check me-1 text-success"></i> Date of Birth
+                                                </label>
+                                                <input type="text" 
+                                                    class="form-control rounded-pill shadow-sm"
+                                                    name="dob"
+                                                    value="{{ \Carbon\Carbon::parse($userProfile->dob)->format('d M Y') }}">
+                                            </div>
+                                        @endif
+
+                                    
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Age (auto-calculated)</label>
-                                        <input type="text" class="form-control bg-light" value="35 years" readonly>
+                                        <input type="text" class="form-control bg-light" value="{{ \Carbon\Carbon::parse($userProfile->dob)->age }}" readonly>
                                     </div>
                                 </div>
 
