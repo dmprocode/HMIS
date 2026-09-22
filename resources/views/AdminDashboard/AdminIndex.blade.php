@@ -28,12 +28,12 @@
             
             <!-- Manage Staff -->
             <div class="col-6 col-md-4 col-lg-3">
-                <a href="{{ route('staff-index') }}" class="btn btn-primary w-100 py-3 rounded-3 shadow-sm hover-shadow transition-all text-start d-flex align-items-center justify-content-between">
+                <a href="{{ route('user.index') }}" class="btn btn-primary w-100 py-3 rounded-3 shadow-sm hover-shadow transition-all text-start d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
                         <i class="mdi mdi-account-multiple fs-4"></i>
                         <div>
                             <div class="fw-semibold ">Manage Staff</div>
-                            <small class="opacity-75" style="font-size: 12px;"> Total: 1</small>
+                            <small class="opacity-75" style="font-size: 12px;"> Total: {{$adminDashboard['numOfUser']}}</small>
                         </div>
                     </div>
                     <i class="mdi mdi-arrow-right fs-5"></i>

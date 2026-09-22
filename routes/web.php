@@ -67,6 +67,7 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
     Route::post('add-user', [AdminController::class, 'addUser'])->name('user.add');
     Route::post('delete-user',[AdminController::class,'deleteUser'])->name('delete-user');
     Route::post ('update-user',[AdminController::class,'updateUser'])->name('update-user-data');
+    Route::get('user-profile',[AdminController::class,'adminProfile'])->name('admin.profile');
 
 
 });

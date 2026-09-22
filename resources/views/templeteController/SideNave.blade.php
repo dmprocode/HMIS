@@ -1,3 +1,12 @@
+<style>
+        body {
+            background: #f4f7fc;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+    </style>
+
+
 <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <!-- Begin page -->
         <div class="wrapper">
@@ -58,7 +67,7 @@
                         <li class="side-nav-title side-nav-item">Apps</li>
 
                         <li class="side-nav-item">
-                            <a href="apps-calendar.html" class="side-nav-link">
+                            <a href="{{route('admin.profile')}}" class="side-nav-link">
                                 <i class="uil-user"></i>
                                 <span> Profile </span>
                             </a>

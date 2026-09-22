@@ -355,7 +355,7 @@
                 <div class="card-body p-4">
                     <form   enctype="multipart/form-data">
                         @csrf
-                           <input type="hidden" id="up_id">
+                           <input type="text" id="up_id">
                         <div class="row g-3">
                             <!-- First Name -->
                             <div class="col-md-6">
