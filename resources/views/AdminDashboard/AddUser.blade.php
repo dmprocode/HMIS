@@ -353,7 +353,7 @@
                     
                 </div>
                 <div class="card-body p-4">
-                    <form  method="POST" enctype="multipart/form-data">
+                    <form   enctype="multipart/form-data">
                         @csrf
                            <input type="hidden" id="up_id">
                         <div class="row g-3">
@@ -483,7 +483,7 @@
 
                         <!-- Submit Buttons -->
                         <div class="d-flex gap-2 mt-4 pt-3 border-top">
-                            <button type="submit" class="btn btn-info btn-sm px-5">
+                            <button type="#" class="btn btn-info btn-sm px-5  update-user-data">
                                 <i class="mdi mdi-check me-2"></i> Update User
                             </button>
                             <button type="reset" class="btn btn-outline-secondary btn-lg px-4 " id="cancel-btn-add">

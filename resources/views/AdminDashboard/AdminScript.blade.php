@@ -132,12 +132,70 @@ swalWithBootstrapButtons.fire({
     $('#up_gender').val(gender)
     $('#up_userrole').val(role)
     $('.up-user-status').val(is_active)
+ })
+  $(document).on('click', '.update-user-data', function(e) {
+    e.preventDefault();
 
+    let user_id   = $('#up_id').val();
+    let fname     = $('#up_fname').val();
+    let lname     = $('#up_lname').val();
+    let username  = $('#up_userEmail').val();   
+    let phone     = $('#up_phone').val();
+    let gender    = $('#up_gender').val();
+    let role      = $('#up_userrole').val();
 
+    let is_active = $('.up-user-status').is(':checked') ? 1 : 0;
 
     
- })
+
+    console.log({
+        user_id, fname, lname, username, phone, gender, role, is_active
+    });
+
+    $.ajax({
+        url: "{{ route('update-user-data') }}",
+        type: "POST",
+        data: {
+            user_id: user_id,
+            fname: fname,
+            lname: lname,
+            username: username,
+            phone: phone,
+            gender: gender,
+            role: role,
+            is_active: is_active,
+            _token: "{{ csrf_token() }}"
+        },
+        success: function(res) {
+            if (res.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: res.message,
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => location.reload());
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: res.message
+                });
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Something went wrong!'
+            });
+        }
+    });
 });
 
+
+ });
+ 
 
 </script>

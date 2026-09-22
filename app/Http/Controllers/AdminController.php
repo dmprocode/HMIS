@@ -90,6 +90,58 @@ class AdminController extends Controller
             ]);
         }
     }
+    public function updateUser(){
+   
+
+    {
+        // Validate
+        $validator = Validator::make($request->all(), [
+            'user_id'  => 'required|exists:admins,id',
+            'fname'    => 'required|string|max:255',
+            'lname'    => 'required|string|max:255',
+            'username' => 'required|email|admins,username,' . $request->user_id,
+            'phone'    => 'nullable|string|max:20',
+            'gender'   => 'nullable|in:male,female',
+            'role'     => 'required|in:admin,super_admin,doctor,nurse',
+            'is_active'=> 'required|in:0,1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first(),
+                'errors'  => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            $admin = Admin::findOrFail($request->user_id);
+
+            $admin->update([
+                'fname'     => $request->fname,
+                'lname'     => $request->lname,
+                'username'  => $request->username,
+                'phone'     => $request->phone,
+                'gender'    => $request->gender,
+                'role'      => $request->role,
+                'is_active' => $request->is_active,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User updated successfully!',
+                'data'    => $admin
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error updating user: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+}
+    
 
  
 
