@@ -10,6 +10,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
+
 class AdminController extends Controller
 {
     public function adminIndex(){
@@ -131,6 +132,32 @@ public function adminProfile(){
     $userProfile = Auth()->guard('admin')->user();
       
     return view('AdminDashboard.AdminProfile',compact('userProfile'));
+}
+
+
+public function UpdatePassword(Request $request)
+{
+    $request->validate([
+        'current_password'     => 'required',
+        'new_password'         => 'required|min:8',
+        'confirm_new_password' => 'required|same:new_password',  // ✅ Matches new_password
+    ], [
+        'confirm_new_password.same' => 'The confirm password does not match the new password.',
+    ]);
+
+    // Now verify current password
+    $admin = auth('admin')->user();
+
+    if (!Hash::check($request->current_password, $admin->password)) {
+        return back()->with('error', 'Current password is incorrect.');
+    }
+
+    // Update
+    $admin->update([
+        'password' => Hash::make($request->new_password),
+    ]);
+
+    return back()->with('success', 'Password updated successfully!');
 }
     
 

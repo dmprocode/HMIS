@@ -56,7 +56,6 @@
                     </span>
                     @endif
 
-                    <hr class="my-4">
 
                     <!-- Quick Info -->
                     <div class="text-start">
@@ -176,32 +175,32 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">First Name</label>
-                                        <input type="text" class="form-control" value="{{$userProfile->fname}}">
+                                        <input type="text" class="form-control" value="{{$userProfile->fname}}"readonly>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Last Name</label>
-                                        <input type="text" class="form-control" value="{{$userProfile->lname}}">
+                                        <input type="text" class="form-control" value="{{$userProfile->lname}}" readonly>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Username</label>
-                                        <input type="text" class="form-control" value="{{$userProfile->username}}">
+                                        <input type="text" class="form-control" value="{{$userProfile->username}}" readonly>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Email</label>
-                                        <input type="email" class="form-control" value="{{$userProfile->username}}">
+                                        <input type="email" class="form-control" value="{{$userProfile->username}}" readonly>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Phone</label>
-                                        <input type="text" class="form-control" value="{{$userProfile->phone}}">
+                                        <input type="text" class="form-control" value="{{$userProfile->phone}}" readonly>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold" value="{{$userProfile->gender}}">Gender</label>
-                                        <select class="form-select">
+                                        <select class="form-select" readonly>
                                             <option>Male</option>
                                             <option>Female</option>
                                             <option>Other</option>
@@ -230,7 +229,7 @@
                                                 <input type="text" 
                                                     class="form-control rounded-pill shadow-sm"
                                                     name="dob"
-                                                    value="{{ \Carbon\Carbon::parse($userProfile->dob)->format('d M Y') }}">
+                                                    value="{{ \Carbon\Carbon::parse($userProfile->dob)->format('d M Y') }}" readonly>
                                             </div>
                                         @endif
 
@@ -257,14 +256,32 @@
                                 Change Password
                             </h5>
 
-                            <form>
+                            <form method="post" action="{{route('update.password')}}">
+                                @csrf 
+
+                                @if(session()->has('error'))
+
+                                    <div class="alert alert-danger bg-info bg-opacity-10 border-0 rounded-3">
+                                        <i class="mdi mdi-information-outline me-1"></i>
+                                        {{session()->get('error')}}
+                                    </div>
+
+                                @endif
+                                 @if(session()->has('success'))
+                                 <div class="alert alert-info bg-info bg-opacity-10 border-0 rounded-3">
+                                    <i class="mdi mdi-information-outline me-1"></i>
+                                    {{session()->get('success')}}
+                                </div>
+                                @endif
+
+
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Current Password</label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-light">
                                             <i class="mdi mdi-lock-outline"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Enter current password">
+                                        <input type="password" class="form-control" placeholder="Enter current password" id="current_password" name="current_password">
                                         <button type="button" class="btn btn-outline-secondary toggle-password">
                                             <i class="mdi mdi-eye-outline"></i>
                                         </button>
@@ -277,11 +294,15 @@
                                         <span class="input-group-text bg-light">
                                             <i class="mdi mdi-lock-plus-outline"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Enter new password">
+                                        <input type="password" class="form-control" placeholder="Enter new password" name="new_password" id="new_password">
                                         <button type="button" class="btn btn-outline-secondary toggle-password">
                                             <i class="mdi mdi-eye-outline"></i>
                                         </button>
                                     </div>
+
+                                    @error('new_password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
@@ -290,20 +311,20 @@
                                         <span class="input-group-text bg-light">
                                             <i class="mdi mdi-lock-check-outline"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Confirm new password">
+                                        <input type="password" class="form-control" name="confirm_new_password"  id="confirm_new_password" placeholder="Confirm new password">
                                         <button type="button" class="btn btn-outline-secondary toggle-password">
                                             <i class="mdi mdi-eye-outline"></i>
                                         </button>
                                     </div>
+                                    @error('confirm_new_password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
-                                <div class="alert alert-info bg-info bg-opacity-10 border-0 rounded-3">
-                                    <i class="mdi mdi-information-outline me-1"></i>
-                                    Password must be at least 8 characters with letters & numbers.
-                                </div>
+                               
 
                                 <div class="text-end mt-3">
-                                    <button type="button" class="btn btn-primary rounded-pill px-4">
+                                    <button type="submit" class="btn btn-primary rounded-pill px-4">
                                         <i class="mdi mdi-key-change me-1"></i> Update Password
                                     </button>
                                 </div>
