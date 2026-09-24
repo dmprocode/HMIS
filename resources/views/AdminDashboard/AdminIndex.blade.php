@@ -56,7 +56,7 @@
             
             <!-- Manage Departments -->
             <div class="col-6 col-md-4 col-lg-3">
-                <a href="" class="btn btn-warning w-100 py-3 rounded-3 shadow-sm hover-shadow transition-all text-start d-flex align-items-center justify-content-between">
+                <a href="{{route('depertments.index')}}" class="btn btn-warning w-100 py-3 rounded-3 shadow-sm hover-shadow transition-all text-start d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
                         <i class="mdi mdi-domain fs-4"></i>
                         <div>

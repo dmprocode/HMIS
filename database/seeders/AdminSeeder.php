@@ -14,16 +14,16 @@ class AdminSeeder extends Seeder
 
         // Super Admin (email-based)
         Admin::updateOrCreate(
-            ['username' => 'superadmin@gmail.com'],
+            ['username' => 'doctor@gmail.com'],
             [
-                'fname' => 'Super',
-                'lname' => 'Admin',
+                'fname' => 'Ansiger',
+                'lname' => 'Mbuya',
                 'password' => Hash::make('password123'),
                 'phone' => '0712345678',
                 'dob' => '1990-01-15',
-                'gender' => 'male',
+                'gender' => 'Female',
                 'address' => '123 Admin Street, Dar es Salaam',
-                'role' => 'super_admin',
+                'role' => 'doctor',
             ]
         );
 
@@ -42,25 +42,6 @@ class AdminSeeder extends Seeder
             ]
         );
 
-        // Moderator
-        Admin::updateOrCreate(
-            ['username' => 'moderator@gmail.com'],
-            [
-                'fname' => 'Secilia',
-                'lname' => 'Mathias',
-                'password' => Hash::make('password123'),
-                'phone' => '0712345680',
-                'dob' => '1995-08-10',
-                'gender' => 'female',
-                'address' => '789 Moderator Road, Mwanza',
-                'role' => 'moderator',
-            ]
-        );
-
-        // $this->command->info('✅ Admins seeded successfully!');
-        // $this->command->info('👤 superadmin / password123');
-        // $this->command->info('👤 superadmin@gmail.com / password123');
-        // $this->command->info('👤 admin@gmail.com / password123');
-        // $this->command->info('👤 moderator@gmail.com / password123');
+        
     }
 }

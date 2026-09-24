@@ -33,24 +33,11 @@ class Admin extends Authenticatable
     ];
 
     // Helper methods
-    public function isSuperAdmin()
+    
+      public function admin()
     {
-        return $this->role === 'super_admin';
+        return $this->hasMany(Department::class, 'user_id');
     }
 
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
-
-    public function isModerator()
-    {
-        return $this->role === 'moderator';
-    }
-
-    // Get full name
-    public function getFullNameAttribute()
-    {
-        return $this->fname . ' ' . $this->lname;
-    }
+    
 }

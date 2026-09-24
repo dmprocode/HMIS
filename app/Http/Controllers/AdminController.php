@@ -62,7 +62,7 @@ class AdminController extends Controller
         'phone' => $request->phone,
         'gender' => $request->gender,
         'user_status' => $request->user_status,
-        'userrole' => $request->userrole,
+        'role' => $request->userrole,
         'password' => $password,
 
     ]);

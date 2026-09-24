@@ -139,19 +139,24 @@
         <script src="{{ asset('assets/js/pages/demo.dashboard.js') }}"></script>
         <!-- end demo js-->
 
-       <!-- jQuery DataTables -->
-        <script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/dataTables.bootstrap5.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+       <<!-- Bootstrap 5 Bundle (must load before plugins) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Datatable Init -->
-        <script src="{{ asset('assets/js/pages/demo.datatable-init.js') }}"></script>
+<!-- jQuery DataTables -->
+<script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/responsive.bootstrap5.min.js') }}"></script>
 
-        <!-- quill js -->
-        <script src="assets/js/vendor/quill.min.js"></script>
-        <!-- quill Init js-->
-        <script src="assets/js/pages/demo.quilljs.js"></script>
+<!-- Datatable Init -->
+<script src="{{ asset('assets/js/pages/demo.datatable-init.js') }}"></script>
+
+<!-- Quill JS -->
+<script src="{{ asset('assets/js/vendor/quill.min.js') }}"></script>
+
+<!-- Quill Init -->
+<script src="{{ asset('assets/js/pages/demo.quilljs.js') }}"></script>
+
 
 
     </body>

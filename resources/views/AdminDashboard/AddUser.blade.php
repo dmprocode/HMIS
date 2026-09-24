@@ -304,7 +304,6 @@
                                         <option value="" selected disabled>Select user role</option>
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
-                                        <option value="doctor">Human Resource HR</option>
                                         <option value="pharmacy">Pharmacy Technician</option>
                                         <option value="receptionist">Receptionist</option>
                                     </select>

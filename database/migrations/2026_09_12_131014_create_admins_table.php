@@ -24,7 +24,7 @@ class CreateAdminsTable extends Migration
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->text('address')->nullable();
             $table->string('userImage')->nullable();
-            $table->enum('role', ['super_admin', 'admin', 'moderator'])->default('admin');
+            $table->string('role');
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
