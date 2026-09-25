@@ -21,6 +21,21 @@
         </a>
     </div>
 
+    @if(session()->has('success'))
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show shadow-sm rounded-3 border-0 d-flex align-items-center gap-2" role="alert">
+        <i class="mdi mdi-check-circle fs-4"></i>
+        <div class="flex-grow-1 fw-semibold">{{ session()->get('success') }}</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            let el = document.getElementById('successAlert');
+            if (el) el.remove();
+        }, 4000);
+    </script>
+@endif
+
     {{-- ═══════════════ FORM ═══════════════ --}}
     <form action="{{route('add-patients')}}" method="POST">
         @csrf

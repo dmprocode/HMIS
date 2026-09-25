@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Patient extends Model
+class Patients extends Model   
 {
     use SoftDeletes;
+    protected $table = 'patients';
+
 
     protected $fillable = [
         'uuid', 'patient_number', 'first_name', 'last_name',

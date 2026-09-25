@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Patient;
+use App\Models\Patients;
+
+
+
 
 class NurseController extends Controller
 {
@@ -29,15 +32,28 @@ class NurseController extends Controller
             'next_of_kin_phone'  => 'nullable|string|regex:/^[0-9]{10,15}$/',
             'status'             => 'required|in:active,inactive,deceased',
         ]);
-     dd($validated);
 
 
        
         $validated['registered_by'] = auth('admin')->id();
 
-        Patient::create($validated);
+       $patient = Patients::create([
+            'first_name'         => $validated['first_name'],
+            'last_name'          => $validated['last_name'],
+            'date_of_birth'      => $validated['date_of_birth'] ?? null,
+            'gender'             => $validated['gender'],
+            'phone'              => $validated['phone'],
+            'address'            => $validated['address'] ?? null,
+            'blood_group'        => $validated['blood_group'] ?? null,
+            'allergies'          => $validated['allergies'] ?? null,
+            'next_of_kin_phone'  => $validated['next_of_kin_phone'] ?? null,
+            'status'             => $validated['status'],
+            'registered_by'      => auth('admin')->id(),
+        ]);
 
-        return redirect()->route('patients.index')
+        
+
+        return redirect()->route('patents.index')
             ->with('success', 'Patient registered successfully!');
     
 
