@@ -85,7 +85,7 @@ class LoginController extends Controller
 
         // 6. Redirect based on role
         switch ($admin->role) {
-             case 'super_admin':
+             case 'nurse':
                 return redirect()->route('super-admin')
                     ->with('success', 'Welcome, ' . $admin->fname);
 

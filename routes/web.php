@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\NurseController;
 
 
 
@@ -76,6 +77,13 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
 
 
 });
+
+Route::middleware(['auth:admin','is_NurseMiddleware'])->prefix('nurse')->group(function () {
+Route::get('dashboard',[NurseController::class,'dashboard'])->name('nurse.dashboard');
+
+});
+
+
 
 // routes/web.php
 Route::get('/home', [HomeController::class, 'index'])->name('home');

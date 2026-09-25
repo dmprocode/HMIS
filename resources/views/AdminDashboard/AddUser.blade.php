@@ -1,12 +1,8 @@
 @include('templeteController.Header');
 @include('templeteController.SideNave');
 @include('templeteController.TopNave')
-<div class="row">
-
-
+<div class="row">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     <div class="col-12">
-
-        
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show shadow-sm border-start border-5 border-success"
             role="alert">
@@ -108,10 +104,10 @@
 
                                     @if($user->role == 'admin')
                                     <td>Admin</td>
-                                    @elseif($user->role == 'super_admin')
-                                    <td>Super Admin</td>
-                                    @else($user->role == 'moderator')
-                                    <td>Moderator</td>
+                                    @elseif($user->role == 'doctor')
+                                    <td>Doctor</td>
+                                    @else($user->role == 'nurse')
+                                    <td>Nurse</td>
                                     @endif
                                     
 
@@ -305,7 +301,8 @@
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
                                         <option value="pharmacy">Pharmacy Technician</option>
-                                        <option value="receptionist">Receptionist</option>
+                                        <option value="nurse">Nurse</option>
+
                                     </select>
                                     <i class="text-danger">@error('userrole') {{$message}} @enderror .</i>
 
@@ -468,7 +465,7 @@
                                         <option value="" selected disabled>Select user role</option>
                                         <option value="admin">Admin</option>
                                         <option value="doctor">Doctor</option>
-                                        <option value="doctor">Human Resource HR</option>
+                                        <option value="nurse">Nurse</option>
                                         <option value="pharmacy">Pharmacy Technician</option>
                                         <option value="receptionist">Receptionist</option>
                                     </select>

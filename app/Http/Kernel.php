@@ -67,7 +67,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // ======================My new route==========================
         'is_SuperAdmin'=> \App\Http\Middleware\SuperAdmin::class,
-        'is_Admin'=> \App\Http\Middleware\IsAdmin::class 
+        'is_Admin'=> \App\Http\Middleware\IsAdmin::class,
+        'is_NurseMiddleware'=>\App\Http\Middleware\NurseMiddleware::class 
 
 
     ];

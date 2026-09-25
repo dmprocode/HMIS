@@ -44,7 +44,7 @@ class AdminController extends Controller
         'phone'        => 'required|string|regex:/^[0-9]{10,15}$/|unique:admins,phone',
         'gender'       => 'required',
         'user_status'  => 'required|in:active,inactive,suspended',
-        'userrole'     => 'required|in:admin,doctor,receptionist,user',
+        'userrole'     => 'required|in:admin,doctor,nurse,receptionist,user',
     ]);
 
     $imagePath = null;

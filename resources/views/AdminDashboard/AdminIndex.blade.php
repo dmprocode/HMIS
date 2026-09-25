@@ -1,4 +1,4 @@
-           @include('templeteController.Header');
+ @include('templeteController.Header');
 @include('templeteController.SideNave')
 @include('templeteController.TopNave')
 

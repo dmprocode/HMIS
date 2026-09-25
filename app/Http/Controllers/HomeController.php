@@ -13,8 +13,8 @@ class HomeController extends Controller
         if (Auth::guard('admin')->check()) {
             $admin = Auth::guard('admin')->user();
             
-            if ($admin->role === 'super_admin') {
-                return redirect()->route('super-admin');
+            if ($admin->role === 'nurse') {
+                return redirect()->route('nurse.dashboard');
             }
             
             if ($admin->role === 'admin') {
