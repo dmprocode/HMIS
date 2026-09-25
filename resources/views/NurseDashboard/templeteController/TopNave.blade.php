@@ -170,9 +170,13 @@
                                        <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Daniel Mathias</span>
-                                        <span class="account-position">Admin</span>
-                                    </span>
+                                        <span class="account-user-name">{{Auth()->guard('admin')->user()->fname}}
+                                            {{Auth()->guard('admin')->user()->lname}}
+                                        </span>
+                                    <span class="account-position text-uppercase fw-semibold">
+                                        {{ auth()->guard('admin')->user()->role }}
+                                    </span>                                  
+                                  </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                                     <!-- item-->
