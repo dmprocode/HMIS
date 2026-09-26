@@ -82,6 +82,8 @@ Route::middleware(['auth:admin','is_NurseMiddleware'])->prefix('nurse')->group(f
 Route::get('dashboard',[NurseController::class,'dashboard'])->name('nurse.dashboard');
 Route::get('patents',[NurseController::class,'patentsIndex'])->name('patents.index');
 Route::post('add-patient',[NurseController::class,'addPatients'])->name('add-patients');
+Route::get('view-patients',[NurseController::class,'viewPatients'])->name('view-patients');
+
 
 
 });

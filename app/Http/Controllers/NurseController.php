@@ -59,4 +59,8 @@ class NurseController extends Controller
 
     
     }
+
+    public function viewPatients(){
+        return view('NurseDashboard.NurseHome.viewPatients');
+    }
 }

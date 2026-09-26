@@ -276,7 +276,7 @@
                         </a>
 
                         {{-- View All --}}
-                        <a href="#" class="btn btn-sm flex-fill fw-semibold"
+                        <a href="{{route('view-patients')}}" class="btn btn-sm flex-fill fw-semibold"
                             style="background: #0891b215; color: #0891b2; font-size: 12px;">
                             <i class="mdi mdi-account-multiple"></i> View
                         </a>
