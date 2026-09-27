@@ -5,21 +5,32 @@
 <div class="container-fluid py-4 px-3 px-md-4">
 
     {{-- ═══════════════ PAGE HEADER ═══════════════ --}}
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
-        <div>
-            <h3 class="mb-1 d-flex align-items-center">
-                <i class="mdi mdi-account-plus text-primary me-2"></i>
-                Ongeza Mgonjwa
-            </h3>
-            <p class="text-muted mb-0" style="font-size: 14px;">
-                Jaza taarifa za mgonjwa mpya hapa chini
-            </p>
-        </div>
+   <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+    <div>
+        <h3 class="mb-1 d-flex align-items-center">
+            <i class="mdi mdi-account-plus text-primary me-2"></i>
+            Ongeza Mgonjwa
+        </h3>
+        <p class="text-muted mb-0" style="font-size: 14px;">
+            Jaza taarifa za mgonjwa mpya hapa chini
+        </p>
+    </div>
 
-        <a href="{{route('nurse.dashboard')}}" class="btn btn-outline-secondary btn-sm px-3 rounded-pill">
+    <div class="d-flex gap-2 flex-wrap">
+        {{-- View Patients --}}
+        <a href="{{route('view-patients')}}" 
+           class="btn btn-primary btn-sm px-3 rounded-pill d-inline-flex align-items-center gap-1">
+            <i class="mdi mdi-account-multiple"></i>
+            Angalia Wagonjwa
+        </a>
+
+        {{-- Back --}}
+        <a href="{{ route('nurse.dashboard') }}" 
+           class="btn btn-outline-secondary btn-sm px-3 rounded-pill">
             <i class="mdi mdi-arrow-left me-1"></i> Rudi
         </a>
     </div>
+</div>
 
     @if(session()->has('success'))
     <div id="successAlert" class="alert alert-success alert-dismissible fade show shadow-sm rounded-3 border-0 d-flex align-items-center gap-2" role="alert">

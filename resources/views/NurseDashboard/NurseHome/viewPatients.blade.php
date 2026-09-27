@@ -1,198 +1,106 @@
-@include('NurseDashboard.templeteController.Header')
-@include('NurseDashboard.templeteController.SideNave')
-@include('NurseDashboard.templeteController.TopNave')
+@include('templeteController.Header');
+@include('templeteController.SideNave');
+@include('templeteController.TopNave')
+<div class="row">
 
-<div class="container-fluid py-4 px-3 px-md-4">
 
-   <div class="card shadow-sm border-0 rounded-3">
-    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-        <h5 class="mb-0 fw-bold text-primary">
-            <i class="mdi mdi-account-group me-2"></i> Patients List
-        </h5>
-        <button class="btn btn-primary rounded-pill px-4 shadow-sm">
-            <i class="mdi mdi-plus-circle me-1"></i> Add Patient
-        </button>
-    </div>
+    <div class="card admin-table shadow-sm">
+        <div class="card-body p-2">
+            <div
+                class="manage-staff-titile d-flex align-items-center justify-content-between p-3 bg-light rounded-3 border border-2 border-info mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-danger fs-4">👥</span>
+                    <h5 class="mb-0 fw-semibold">To Day Patients</h5>
+                    <span class="badge bg-danger rounded-pill fs-6 px-3 py-1">2</span>
+                </div>
 
-    <div class="card-body">
-        <!-- Filters -->
-        <div class="row g-2 mb-3">
-            <div class="col-md-3">
-                <label class="form-label small fw-bold">Status</label>
-                <select id="filterStatus" class="form-select form-select-sm">
-                    <option value="">All</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="deceased">Deceased</option>
-                </select>
+                <a href="{{route('patents.index')}}"
+                    class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1 px-3 py-1.5 rounded-3 border-2 fw-semibold add-user-btn"
+                    id="addPatientBtn">
+                    <i class="mdi mdi-account-plus fs-6"></i>
+                    Add Patient
+                </a>
             </div>
-            <div class="col-md-3">
-                <label class="form-label small fw-bold">Gender</label>
-                <select id="filterGender" class="form-select form-select-sm">
-                    <option value="">All</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label small fw-bold">Blood Group</label>
-                <select id="filterBlood" class="form-select form-select-sm">
-                    <option value="">All</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-            </div>
-            <div class="col-md-3 d-flex align-items-end">
-                <button id="resetFilters" class="btn btn-outline-secondary btn-sm w-100">
-                    <i class="mdi mdi-refresh"></i> Reset Filters
-                </button>
+            <div class="table-responsive p-2">
+                <div class="table-responsive p-2">
+                    <div class="table-responsive">
+                        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Patient No.</th>
+                                    <th>Full Name</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Blood Group</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($patientCompontents['patents'] as $key=>$patient)
+                                <tr>
+                                    <td>{{$key + 1}}</td>
+                                    <td><span
+                                            class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1">{{$patient->patient_number}}</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                                                style="width: 32px; height: 32px; font-size: 12px; font-weight: 600;">
+                                                {{ strtoupper(substr($patient->first_name, 0, 1) .
+                                                substr($patient->last_name, 0, 1)) }}
+
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold">{{$patient->first_name}}
+                                                    {{$patient->last_name}}</div>
+                                                <small class="text-muted" style="font-size: 11px;">Age: ({{
+                                                    $patient->date_of_birth->age }} yrs)</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{$patient->gender}}</td>
+                                    <td>{{$patient->phone}}</td>
+                                    <td><span
+                                            class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-2 py-1">{{$patient->blood_group}}</span>
+                                    </td>
+                                    <td><span
+                                            class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1">{{$patient->status}}</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="text-primary" title="View"><i
+                                                    class="mdi mdi-eye-outline"></i></a>
+                                            <a href="#" class="text-warning" title="Edit"><i
+                                                    class="mdi mdi-pencil-outline"></i></a>
+                                            <a href="#" class="text-danger" title="Delete"><i
+                                                    class="mdi mdi-delete-outline"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Table -->
-        <div class="table-responsive">
-            <table id="patientsTable" class="table table-hover align-middle w-100">
-                <thead class="table-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Patient No.</th>
-                        <th>Full Name</th>
-                        <th>Gender</th>
-                        <th>DOB</th>
-                        <th>Phone</th>
-                        <th>Blood</th>
-                        <th>Status</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>Mussa Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>Dactive</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr><tr>
-                        <td>1</td>
-                        <td>PAT-0001</td>
-                        <td>John Doe</td>
-                        <td>male</td>
-                        <td>1990-01-01</td>
-                        <td>0712345678</td>
-                        <td>O+</td>
-                        <td>active</td>
-                        <td class="text-center table-action">
-                            <button class="btn btn-sm btn-outline-primary btn-view" data-id="1"><i class="mdi mdi-eye"></i></button>
-                            <button class="btn btn-sm btn-outline-warning btn-edit" data-id="1"><i class="mdi mdi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger btn-delete" data-id="1"><i class="mdi mdi-delete"></i></button>
-                        </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
     </div>
+
+    <!-- ================Add  staff form ============ -->
+
+
+
 </div>
+<!-- =======+End Staff Form=============  -->
 </div>
-@include('NurseDashboard.NurseHome.patientsScript')
-@include('NurseDashboard.templeteController.Footer')
+
+</div> <!-- end col -->
+
+
+</div>
+@include('templeteController.Footer');

@@ -33,6 +33,13 @@ class Patients extends Model
             }
         });
     }
+    protected $casts = [
+    'date_of_birth' => 'date',       
+    'created_at'    => 'datetime',
+    'updated_at'    => 'datetime',
+    'deleted_at'    => 'datetime',
+];
+
 
     public function getRouteKeyName(): string
     {

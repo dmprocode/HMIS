@@ -61,6 +61,10 @@ class NurseController extends Controller
     }
 
     public function viewPatients(){
-        return view('NurseDashboard.NurseHome.viewPatients');
+        $patients = Patients::latest()->get();
+        $patientCompontents =[
+            'patents' => $patients
+        ];
+        return view('NurseDashboard.NurseHome.viewPatients',compact('patientCompontents'));
     }
 }
