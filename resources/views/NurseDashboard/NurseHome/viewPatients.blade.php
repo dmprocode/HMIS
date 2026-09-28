@@ -21,6 +21,21 @@
                     Add Patient
                 </a>
             </div>
+
+            @if(session()->has('success'))
+                <div id="successAlert" class="alert alert-success alert-dismissible fade show shadow-sm rounded-3 border-0 d-flex align-items-center gap-2" role="alert">
+                    <i class="mdi mdi-check-circle fs-4"></i>
+                    <div class="flex-grow-1 fw-semibold">{{ session()->get('success') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+
+                <script>
+                    setTimeout(() => {
+                        let el = document.getElementById('successAlert');
+                        if (el) el.remove();
+                    }, 4000);
+                </script>
+             @endif
             <div class="table-responsive p-2">
                 <div class="table-responsive p-2">
                     <div class="table-responsive">
@@ -71,7 +86,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <a href="#" class="text-primary" title="View"><i
+                                            <a href="{{route('view-more-patient', $patient->uuid)}}" class="text-primary" title="View"><i
                                                     class="mdi mdi-eye-outline"></i></a>
                                             <a href="#" class="text-warning" title="Edit"><i
                                                     class="mdi mdi-pencil-outline"></i></a>

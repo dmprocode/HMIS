@@ -83,6 +83,10 @@ Route::get('dashboard',[NurseController::class,'dashboard'])->name('nurse.dashbo
 Route::get('patents',[NurseController::class,'patentsIndex'])->name('patents.index');
 Route::post('add-patient',[NurseController::class,'addPatients'])->name('add-patients');
 Route::get('view-patients',[NurseController::class,'viewPatients'])->name('view-patients');
+Route::get('view-more-patients/{uuid}',[NurseController::class,'viewMorePatients'])->name('view-more-patient');
+Route::get('edit-patient/{patient}',[NurseController::class,'editPatient'])->name('edit-patient');
+Route::put('edit-patients-data',[NurseController::class,'updatePatient'])->name('edit-patients-data');
+
 
 
 

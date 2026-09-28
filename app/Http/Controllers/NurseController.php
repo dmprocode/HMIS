@@ -67,4 +67,37 @@ class NurseController extends Controller
         ];
         return view('NurseDashboard.NurseHome.viewPatients',compact('patientCompontents'));
     }
+
+
+    public function viewMorePatients($uuid){
+    $patientView = Patients::with('registeredBy')->where('uuid', $uuid)->first();
+        return view('NurseDashboard.NurseHome.viewMorePatient',compact('patientView'));
+       
+    }
+    public function editPatient(Patients $patient){
+        
+        
+        return view('NurseDashboard.NurseHome.editPatient',compact('patient'));
+    }
+
+    public function updatePatient(Request $request){
+        $patientId = Patients::find($request->id); 
+        if ($patientId) {
+            $patientId->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'date_of_birth' => $request->date_of_birth,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'blood_group' => $request->blood_group,
+                'allergies' => $request->allergies,
+                'next_of_kin_phone' => $request->next_of_kin_phone,
+                'registered_by' => $request->registered_by,
+
+            ]);
+            return redirect()->route('view-patients')->with('success','Patient Updated SuccessFully');
+        }
+
+    }
 }

@@ -38,6 +38,10 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Department::class, 'user_id');
     }
+    public function nurse(){
+        return $this->hasMany(Patients::class, 'registered_by');
+
+    }
 
     
 }

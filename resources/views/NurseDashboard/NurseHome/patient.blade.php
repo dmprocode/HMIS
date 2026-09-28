@@ -45,7 +45,7 @@
             if (el) el.remove();
         }, 4000);
     </script>
-@endif
+    @endif
 
     {{-- ═══════════════ FORM ═══════════════ --}}
     <form action="{{route('add-patients')}}" method="POST">
