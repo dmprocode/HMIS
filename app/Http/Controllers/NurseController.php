@@ -93,7 +93,7 @@ class NurseController extends Controller
                 'blood_group' => $request->blood_group,
                 'allergies' => $request->allergies,
                 'next_of_kin_phone' => $request->next_of_kin_phone,
-                'registered_by' => $request->registered_by,
+                'status' => $request->status,
 
             ]);
             return redirect()->route('view-patients')->with('success','Patient Updated SuccessFully');

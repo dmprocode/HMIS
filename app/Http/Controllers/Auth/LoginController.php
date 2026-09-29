@@ -97,6 +97,11 @@ class LoginController extends Controller
                 return redirect()->route('admin.moderator.dashboard')
                     ->with('success', 'Welcome, ' . $admin->fname);
 
+             
+            case 'doctor':
+                return redirect()->route('doctor-dashboard')
+                    ->with('success', 'Welcome, ' . $admin->fname);
+
             default:
                 // Unknown role → logout and reject
                 Auth::guard('admin')->logout();

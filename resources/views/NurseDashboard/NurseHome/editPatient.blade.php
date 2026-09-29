@@ -16,7 +16,7 @@
         border: 1px solid #e2e8f0;
         border-radius: 14px;
         padding: 20px;
-        /* ❌ REMOVED: height: 100%; */
+      
     }
 
     .edit-page .form-card-title {
@@ -276,7 +276,7 @@
 
                     <hr class="my-3">
 
-                    <button type="button" class="btn btn-outline-danger w-100 py-2 fw-semibold rounded-3">
+                    <button type="button" class="btn btn-outline-danger w-100 py-2 fw-semibold rounded-3" data-id="{{$patient->uuid}}">
                         <i class="mdi mdi-delete-outline me-1"></i> Futa Mgonjwa
                     </button>
                 </div>

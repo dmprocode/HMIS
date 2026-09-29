@@ -87,10 +87,9 @@ Route::get('view-more-patients/{uuid}',[NurseController::class,'viewMorePatients
 Route::get('edit-patient/{patient}',[NurseController::class,'editPatient'])->name('edit-patient');
 Route::put('edit-patients-data',[NurseController::class,'updatePatient'])->name('edit-patients-data');
 
-
-
-
 });
+
+Route::get('doctor-dushboard',[DoctorController::class, 'doctorDashboard'])->name('doctor-dashboard');
 
 
 
