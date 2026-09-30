@@ -159,12 +159,19 @@ public function UpdatePassword(Request $request)
 
     return back()->with('success', 'Password updated successfully!');
 }
+
+public function customizeIndex($id){
+      $customizeId = Admin::find($id)->get();
+      
+      return view('AdminDashboard.CustomizeUser',compact('customizeId'));
+}
     
 
  
 
 
-    public function superAdmin(){
+    public function superAdmin($id){
+        
         return  view('SuperAdminDashboard.dashboard');
     }
 }

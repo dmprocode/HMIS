@@ -140,12 +140,14 @@
                                                 data-is_active = '{{$user->is_active}}'></i></a>
                                         <a href="javascript:void(0);" class="action-icon "> <i
                                                 class="mdi mdi-delete delete-user" 
-                                                data-id = '{{$user->id}}'
-                                                
-                                                
-                                                
-                                                
-                                                ></i></a></span></li>
+                                                data-id = '{{$user->id}}'></i>
+                                        </a>
+                                        <a href="{{ route('customize-doctor', $user->id) }}" 
+                                        class="btn btn-sm btn-outline-primary customize-user"
+                                        title="Customize User">
+                                            <i class="mdi mdi-account-cog-outline fs-5"></i>
+                                        </a>
+                                       </span></li>
                                     </td>
                                 </tr>
                                 @endforeach

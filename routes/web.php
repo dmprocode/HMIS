@@ -71,9 +71,12 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
     Route::get('user-profile',[AdminController::class,'adminProfile'])->name('admin.profile');
     Route::post('update-password',[AdminController::class,'UpdatePassword'])->name('update.password');
 
+
     // =====================Depetrmeant ==================
 
     Route::get('depertmeantIndex',[DepertmeantController::class,'depertmeantIndex'])->name('depertments.index');
+    // =====================Doctor Route========================
+    Route::get('customize-doctor/{id}',[AdminController::class,'customizeIndex'])->name('customize-doctor');
 
 
 });
@@ -90,7 +93,7 @@ Route::put('edit-patients-data',[NurseController::class,'updatePatient'])->name(
 });
 
 Route::get('doctor-dushboard',[DoctorController::class, 'doctorDashboard'])->name('doctor-dashboard');
-
+Route::get('/profile', [DoctorController::class, 'doctorProfile'])->name('doctor-profile');
 
 
 // routes/web.php

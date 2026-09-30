@@ -41,33 +41,16 @@
                         <li class="side-nav-title side-nav-item">Navigation</li>
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <a href="{{ route('doctor-dashboard') }}" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">4</span>
                                 <span> Dashboards </span>
                             </a>
-                            <div class="collapse" id="sidebarDashboards">
-                                <ul class="side-nav-second-level">
-                                    <li>
-                                        <a href="dashboard-analytics.html">Analytics</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashboard-crm.html">CRM</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html">Ecommerce</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashboard-projects.html">Projects</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
 
                         <li class="side-nav-title side-nav-item">Apps</li>
 
-                        <li class="side-nav-item">
-                            <a href="{{route('admin.profile')}}" class="side-nav-link">
+                       <li class="side-nav-item">
+                            <a href="{{route('doctor-profile')}}" class="side-nav-link">
                                 <i class="uil-user"></i>
                                 <span> Profile </span>
                             </a>
@@ -85,7 +68,7 @@
                                         <a href="{{route('user.index')}}">Manage Staff</a>
                                     </li>
                                     <li>
-                                        <a href="apps-email-read.html">Read Email</a>
+                                        <a href="">Customize Staff</a>
                                     </li>
                                 </ul>
                             </div>
