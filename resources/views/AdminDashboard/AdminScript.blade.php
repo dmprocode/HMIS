@@ -177,6 +177,47 @@ swalWithBootstrapButtons.fire({
     });
 });
 
+$(document).on('change', '.user-id', function () {
+    let user_id = $(this).val();
+    if (!user_id) return;
+
+    $.ajax({
+        url: "{{ route('get-user-data') }}",
+        method: "post",
+        data: {
+            user_id: user_id,
+            _token: "{{ csrf_token() }}",  
+
+        },
+        dataType: 'json',         
+        success: function (res) {
+            if (res.status === 200) {
+                let u = res.message
+              $('.fname').val(u.fname);
+              $('.lname').val(u.lname);
+              $('.gender').val(u.gender);
+              $('.dob').val(u.dob);
+              $('.phone').val(u.phone)
+              $('.email').val(u.username)
+              $('.user-address').val(u.address)
+              $('emergency-contact').val(u.emergency-contact)
+
+
+
+
+
+                
+            }
+           
+            
+            
+        },
+        error: function ( error) {
+            console.error(error);
+        }
+    });
+});
+
 
  });
  

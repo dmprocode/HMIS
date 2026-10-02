@@ -68,7 +68,7 @@
                                         <a href="{{route('user.index')}}">Manage Staff</a>
                                     </li>
                                     <li>
-                                        <a href="">Customize Staff</a>
+                                        <a href="{{route('customize-doctor')}}">Customize Staff</a>
                                     </li>
                                 </ul>
                             </div>

@@ -76,7 +76,9 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
 
     Route::get('depertmeantIndex',[DepertmeantController::class,'depertmeantIndex'])->name('depertments.index');
     // =====================Doctor Route========================
-    Route::get('customize-doctor/{id}',[AdminController::class,'customizeIndex'])->name('customize-doctor');
+    Route::get('customize-doctor',[AdminController::class,'customizeIndex'])->name('customize-doctor');
+    Route::post('get-user-data',[AdminController::class,'userData'])->name('get-user-data');
+    Route::post('save-doctor-info',[AdminController::class, 'saveDoctor'])->name('save-doctor');
 
 
 });

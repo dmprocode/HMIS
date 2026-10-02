@@ -25,8 +25,6 @@
             </div>
 
             <form id="doctorForm" action="#" method="POST">
-                @csrf
-
                 <!-- STEP 1 -->
                 <div class="wizard-step" data-step="1">
                     <h5 class="fw-bold text-primary mb-3">Personal Information</h5>
@@ -36,8 +34,26 @@
                             <input type="text" class="form-control" value="DOC-2024-00001" readonly>
                         </div>
                         <div class="col-md-6">
+                            <label class="form-label fw-bold">Select Username <span class="text-danger">*</span></label>
+                            <select name="user_id" class="form-select user-id @error('user_id') is-invalid @enderror"
+                                required>
+                                <option value="">-- Select Username --</option>
+                                @foreach($users as $user)
+                                <option value="{{ $user->id }}">
+                                    {{ $user->username }}
+                                </option>
+                                @endforeach
+                            </select>
+
+                            @error('user_id')
+                            <span class="text-danger d-block mt-1" style="font-size: 12px;">
+                                <i class="mdi mdi-alert-circle"></i> {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">Gender *</label>
-                            <select name="gender" class="form-select" required>
+                            <select name="gender" class="form-select gender" name="gender" required>
                                 <option value="">Select</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -46,15 +62,15 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">First Name *</label>
-                            <input type="text" name="first_name" class="form-control" required>
+                            <input type="text" name="first_name" class="form-control fname" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Last Name *</label>
-                            <input type="text" name="last_name" class="form-control" required>
+                            <input type="text" name="last_name" class="form-control lname" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-bold">Date of Birth *</label>
-                            <input type="date" name="dob" class="form-control" required>
+                            <label class="form-label fw-bold dob">Date of Birth *</label>
+                            <input type="date" name="dob" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -65,19 +81,19 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Phone *</label>
-                            <input type="text" name="phone" class="form-control" required>
+                            <input type="text" name="phone" class="form-control phone" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Email *</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <input type="email" name="email" class="form-control email" required>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">Address</label>
-                            <input type="text" name="address" class="form-control">
+                            <input type="text" name="address" class="form-control user-address">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Emergency Contact</label>
-                            <input type="text" name="emergency_contact" class="form-control">
+                            <input type="text" name="emergency_contact" class="form-control emergency-contact">
                         </div>
                     </div>
                 </div>
@@ -86,17 +102,48 @@
                 <div class="wizard-step d-none" data-step="3">
                     <h5 class="fw-bold text-primary mb-3">Area of Specialization</h5>
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Primary Specialization *</label>
-                            <input type="text" name="primary_specialization" class="form-control" required>
+                        <div class="row g-3">
+
+                            <!-- Primary Specialization Dropdown -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    Primary Specialization <span class="text-danger">*</span>
+                                </label>
+                                <select name="primary_specialization" id="primarySpecialization" class="form-select"
+                                    required>
+                                    <option value="">-- Select Specialization --</option>
+                                    <option value="general">General</option>
+                                    <option value="specialist">Specialist</option>
+                                </select>
+                            </div>
+
+                            <!-- Field of Specialization (Hidden by Default) -->
+                            <div class="col-md-6" id="specialistFieldWrapper" style="display: none;">
+                                <label class="form-label fw-bold">
+                                    Field of Specialization <span class="text-danger">*</span>
+                                </label>
+                                <select name="specialist_field" id="specialistField" class="form-select">
+                                    <option value="">-- Select Field --</option>
+                                    <option value="cardiology">Cardiology (Magonjwa ya Moyo)</option>
+                                    <option value="neurology">Neurology (Magonjwa ya Mishipa ya Fahamu)</option>
+                                    <option value="pediatrics">Pediatrics (Magonjwa ya Watoto)</option>
+                                    <option value="orthopedics">Orthopedics (Mifupa na Viungo)</option>
+                                    <option value="dermatology">Dermatology (Ngozi, Nywele na Kucha)</option>
+                                    <option value="gynecology">Gynecology (Afya ya Wanawake)</option>
+                                    <option value="oncology">Oncology (Magonjwa ya Saratani)</option>
+                                    <option value="psychiatry">Psychiatry (Afya ya Akili na Mizuka)</option>
+                                    <option value="radiology">Radiology (Picha za Ndani ya Mwili)</option>
+                                    <option value="anesthesiology">Anesthesiology (Nusukaputi na Maumivu)</option>
+                                </select>
+                                <small class="text-muted">Choose the specific field of expertise</small>
+                            </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Sub-Specialization</label>
-                            <input type="text" name="sub_specialization" class="form-control">
-                        </div>
+
+
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Department *</label>
-                            <input type="text" name="department" class="form-control" required>
+                            <input type="text" name="department" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Position *</label>
@@ -164,7 +211,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Working Hours</label>
-                            <input type="text" name="working_hours" class="form-control" placeholder="Mon–Fri, 8:00 AM – 4:00 PM">
+                            <input type="text" name="working_hours" class="form-control"
+                                placeholder="Mon–Fri, 8:00 AM – 4:00 PM">
                         </div>
                         <div class="col-md-12">
                             <label class="form-label fw-bold">On-Call Days</label>
@@ -193,80 +241,112 @@
 </div>
 
 <script>
-$(function () {
+    $(function () {
 
-    function showStep(step) {
-        $('.wizard-step').addClass('d-none');
-        $('.wizard-step[data-step="' + step + '"]').removeClass('d-none');
+        function showStep(step) {
+            $('.wizard-step').addClass('d-none');
+            $('.wizard-step[data-step="' + step + '"]').removeClass('d-none');
 
-        $('#wizardProgress').css('width', (step / 5) * 100 + '%');
+            $('#wizardProgress').css('width', (step / 5) * 100 + '%');
 
-        $('.step-label').each(function () {
-            var s = parseInt($(this).data('step'));
-            $(this).toggleClass('text-success', s <= step)
-                   .toggleClass('text-muted', s > step);
-        });
-
-        $('#prevBtn').prop('disabled', step === 1);
-        $('#nextBtn').toggleClass('d-none', step === 5);
-        $('#submitBtn').toggleClass('d-none', step !== 5);
-
-        $('#doctorForm').data('step', step);
-    }
-
-    function validateStep(step) {
-        var ok = true;
-        $('.wizard-step[data-step="' + step + '"] [required]').each(function () {
-            if (!$(this).val()) {
-                $(this).addClass('is-invalid');
-                ok = false;
-            } else {
-                $(this).removeClass('is-invalid');
-            }
-        });
-
-        if (!ok) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Incomplete Step',
-                text: 'Please fill all required fields before continuing.'
+            $('.step-label').each(function () {
+                var s = parseInt($(this).data('step'));
+                $(this).toggleClass('text-success', s <= step)
+                    .toggleClass('text-muted', s > step);
             });
+
+            $('#prevBtn').prop('disabled', step === 1);
+            $('#nextBtn').toggleClass('d-none', step === 5);
+            $('#submitBtn').toggleClass('d-none', step !== 5);
+
+            $('#doctorForm').data('step', step);
         }
-        return ok;
-    }
 
-    $('#nextBtn').on('click', function () {
-        if (validateStep($('#doctorForm').data('step'))) {
-            showStep($('#doctorForm').data('step') + 1);
+        function validateStep(step) {
+            var ok = true;
+            $('.wizard-step[data-step="' + step + '"] [required]').each(function () {
+                if (!$(this).val()) {
+                    $(this).addClass('is-invalid');
+                    ok = false;
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            if (!ok) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Incomplete Step',
+                    text: 'Please fill all required fields before continuing.'
+                });
+            }
+            return ok;
         }
-    });
 
-    $('#prevBtn').on('click', function () {
-        showStep($('#doctorForm').data('step') - 1);
-    });
-
-    $('#doctorForm').on('submit', function (e) {
-        e.preventDefault();
-        if (!validateStep(5)) return;
-
-        $.ajax({
-            url: "",
-            type: 'POST',
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (res) {
-                Swal.fire({ icon: 'success', title: 'Saved!', text: res.message });
-            },
-            error: function (xhr) {
-                Swal.fire({ icon: 'error', title: 'Error!', text: 'Something went wrong.' });
+        $('#nextBtn').on('click', function () {
+            if (validateStep($('#doctorForm').data('step'))) {
+                showStep($('#doctorForm').data('step') + 1);
             }
         });
+
+        $('#prevBtn').on('click', function () {
+            showStep($('#doctorForm').data('step') - 1);
+        });
+
+        $('#doctorForm').on('submit', function (e) {
+            e.preventDefault();
+            if (!validateStep(5)) return;
+
+            // 1. Grab the token value from your HTML meta tag
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: "{{route('save-doctor')}}",
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    console.log(res);
+
+                    Swal.fire({ icon: 'success', title: 'Saved!', text: res.message });
+                },
+                error: function (xhr) {
+
+                    Swal.fire({ icon: 'error', title: 'Error!', text: xhr.responseJSON?.message || 'Something went wrong.' });
+                }
+            });
+
+        });
+
+        // Initialize
+        $('#doctorForm').data('step', 1);
+        showStep(1);
     });
 
-    // Initialize
-    $('#doctorForm').data('step', 1);
-    showStep(1);
-});
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const primary = document.getElementById('primarySpecialization');
+        const fieldWrapper = document.getElementById('specialistFieldWrapper');
+        const fieldSelect = document.getElementById('specialistField');
+
+        primary.addEventListener('change', function () {
+            if (this.value === 'specialist') {
+                fieldWrapper.style.display = 'block';
+                fieldSelect.setAttribute('required', 'required');
+            } else {
+                fieldWrapper.style.display = 'none';
+                fieldSelect.removeAttribute('required');
+                fieldSelect.value = '';
+            }
+        });
+
+    });
+
+
 </script>
+@include('AdminDashboard.AdminScript')
 @include('templeteController.Footer');

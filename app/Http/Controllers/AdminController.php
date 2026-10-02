@@ -160,12 +160,30 @@ public function UpdatePassword(Request $request)
     return back()->with('success', 'Password updated successfully!');
 }
 
-public function customizeIndex($id){
-      $customizeId = Admin::find($id)->get();
+public function customizeIndex(Request $request){
+     
+      $users = Admin::latest()->get();
+      $userId = Admin::find($request->user_id);
       
-      return view('AdminDashboard.CustomizeUser',compact('customizeId'));
+      return view('AdminDashboard.CustomizeUser',compact('users','userId'));
 }
     
+
+public function userData(Request $request)
+{
+    $user = Admin::find($request->user_id);
+
+    return response()->json([
+        'status' => 200,
+        'message' => $user,
+    ]);
+}
+
+public function saveDoctor( Request $request){
+ return response()->json([
+    'message' => $request->all(),
+ ]);
+}
 
  
 
