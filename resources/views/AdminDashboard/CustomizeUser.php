@@ -248,14 +248,7 @@
                             <label class="form-label fw-bold">Working Hours</label>
                             <input type="text" name="working_hours" class="form-control"
                                 placeholder="Mon–Fri, 8:00 AM – 4:00 PM">
-                        </div>
-
-
-
-
-
-
-
+</div>
                     </div>
                 </div>
 
