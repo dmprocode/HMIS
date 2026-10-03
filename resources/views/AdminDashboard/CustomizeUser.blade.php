@@ -5,7 +5,7 @@
 <div class="container py-4">
     <div class="card shadow-lg border-0 rounded-4">
         <div class="card-header bg-primary text-white py-3">
-            <h4 class="mb-0"><i class="mdi mdi-doctor me-2"></i> Register New Doctor</h4>
+            <h4 class="mb-0"><i class="mdi mdi-doctor me-2"></i> Customize Dcotor Details</h4>
         </div>
 
         <div class="card-body p-4">
@@ -161,8 +161,8 @@
                     <h5 class="fw-bold text-primary mb-3">Qualifications &amp; Education</h5>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label fw-bold">Highest Degree *</label>
-                            <input type="text" name="highest_degree" class="form-control" required>
+                            <label class="form-label fw-bold">Highest Education *</label>
+                            <input type="text" name="highest_education" class="form-control" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Medical School *</label>

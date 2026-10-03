@@ -201,16 +201,9 @@ $(document).on('change', '.user-id', function () {
               $('.email').val(u.username)
               $('.user-address').val(u.address)
               $('emergency-contact').val(u.emergency-contact)
-
-
-
-
-
-                
+  
             }
-           
-            
-            
+             
         },
         error: function ( error) {
             console.error(error);

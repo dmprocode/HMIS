@@ -49,13 +49,13 @@
 
                         <li class="side-nav-title side-nav-item">Apps</li>
 
+                      
                        <li class="side-nav-item">
-                            <a href="{{route('doctor-profile')}}" class="side-nav-link">
+                            <a href="{{route('admin.profile')}}" class="side-nav-link">
                                 <i class="uil-user"></i>
                                 <span> Profile </span>
                             </a>
                         </li>
-
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                                 <i class="uil-envelope"></i>

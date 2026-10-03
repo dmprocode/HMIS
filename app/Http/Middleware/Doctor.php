@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DoctorMiddleware
+class Doctor
 {
     /**
      * Handle an incoming request.
@@ -17,12 +16,14 @@ class DoctorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
+
         if (!Auth()->guard('admin')->check()) {
             return redirect()->route('home')->with('error','Please Login First');
         }
 
-        if(!Auth()->guard('admin')->user()->role === 'doctor'){
-            return redirect()->route('home')->with('error','You Have No access to this Page');
+        if (Auth()->guard('admin')->user()->role !== 'doctor') {
+            return redirect()->route('home')->with('error','You Have No Access This This Page');
 
         }
         return $next($request);

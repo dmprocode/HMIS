@@ -7,6 +7,7 @@ use App\Models\StaffModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin;
+use App\Models\Doctor;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -180,8 +181,34 @@ public function userData(Request $request)
 }
 
 public function saveDoctor( Request $request){
+      $validated = $request->validate([
+        'user_id' => 'required|exists:admins,id|unique:doctors,user_id',
+    ]);
+    if ($validated) {
+      $user = Doctor::create([
+    'user_id' => $request->user_id,
+    'highest_education' => $request->highest_education,
+    'medical_school' => $request->medical_school,
+    'specialization_training' => $request->specialization_training,
+    'license_number' => $request->license_number,
+    'license_status' => $request->license_status,
+    'department' => $request->department,
+    'position' => $request->position,
+    'primary_specialization' => $request->primary_specialization,
+    'specialist_field' => $request->specialist_field,
+    'clinical_focus' => $request->clinical_focus,
+    'employment_type' => $request->employment_type,
+    'joined_date' => $request->joined_date,
+    'consultation_fee' => $request->consultation_fee,
+    'working_hours' => $request->working_hours,
+    
+    ]);
+    }
+
+
  return response()->json([
-    'message' => $request->all(),
+    'status' => 200,
+    'message' => 'User Regiseterd Successfully'
  ]);
 }
 

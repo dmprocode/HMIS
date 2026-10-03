@@ -70,10 +70,7 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
     Route::post ('update-user',[AdminController::class,'updateUser'])->name('update-user-data');
     Route::get('user-profile',[AdminController::class,'adminProfile'])->name('admin.profile');
     Route::post('update-password',[AdminController::class,'UpdatePassword'])->name('update.password');
-
-
     // =====================Depetrmeant ==================
-
     Route::get('depertmeantIndex',[DepertmeantController::class,'depertmeantIndex'])->name('depertments.index');
     // =====================Doctor Route========================
     Route::get('customize-doctor',[AdminController::class,'customizeIndex'])->name('customize-doctor');
@@ -84,21 +81,22 @@ Route::middleware(['auth:admin','is_Admin'])->prefix('admin')->group(function ()
 });
 
 Route::middleware(['auth:admin','is_NurseMiddleware'])->prefix('nurse')->group(function () {
-Route::get('dashboard',[NurseController::class,'dashboard'])->name('nurse.dashboard');
-Route::get('patents',[NurseController::class,'patentsIndex'])->name('patents.index');
-Route::post('add-patient',[NurseController::class,'addPatients'])->name('add-patients');
-Route::get('view-patients',[NurseController::class,'viewPatients'])->name('view-patients');
-Route::get('view-more-patients/{uuid}',[NurseController::class,'viewMorePatients'])->name('view-more-patient');
-Route::get('edit-patient/{patient}',[NurseController::class,'editPatient'])->name('edit-patient');
-Route::put('edit-patients-data',[NurseController::class,'updatePatient'])->name('edit-patients-data');
+        Route::get('dashboard',[NurseController::class,'dashboard'])->name('nurse.dashboard');
+        Route::get('patents',[NurseController::class,'patentsIndex'])->name('patents.index');
+        Route::post('add-patient',[NurseController::class,'addPatients'])->name('add-patients');
+        Route::get('view-patients',[NurseController::class,'viewPatients'])->name('view-patients');
+        Route::get('view-more-patients/{uuid}',[NurseController::class,'viewMorePatients'])->name('view-more-patient');
+        Route::get('edit-patient/{patient}',[NurseController::class,'editPatient'])->name('edit-patient');
+        Route::put('edit-patients-data',[NurseController::class,'updatePatient'])->name('edit-patients-data');
 
 });
+Route::middleware(['auth:admin','is_Doctor'])->prefix('doctor')->group(function () {
+    Route::get('dashboard',[DoctorController::class, 'doctorDashboard'])->name('doctor-dashboard');
+    Route::get('profile', [DoctorController::class, 'doctorProfile'])->name('doctor-profile');
+});
 
-Route::get('doctor-dushboard',[DoctorController::class, 'doctorDashboard'])->name('doctor-dashboard');
-Route::get('/profile', [DoctorController::class, 'doctorProfile'])->name('doctor-profile');
 
-
-// routes/web.php
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/doctor/home', [HomeController::class, 'doctorHome'])->name('doctor.home')->middleware('is_doctor');
-Route::get ('/recptionst/home',[HomeController::class,'receptionistIndex'])->name('receptionist.home')->middleware('is_Receptionist');
+// // routes/web.php
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/doctor/home', [HomeController::class, 'doctorHome'])->name('doctor.home')->middleware('is_doctor');
+// Route::get ('/recptionst/home',[HomeController::class,'receptionistIndex'])->name('receptionist.home')->middleware('is_Receptionist');

@@ -66,8 +66,10 @@
 
                         <li class="side-nav-title side-nav-item">Apps</li>
 
-                        <li class="side-nav-item">
-                            <a href="{{route('admin.profile')}}" class="side-nav-link">
+                       
+
+                         <li class="side-nav-item">
+                            <a href="{{route('doctor-profile')}}" class="side-nav-link">
                                 <i class="uil-user"></i>
                                 <span> Profile </span>
                             </a>

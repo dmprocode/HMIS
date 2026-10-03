@@ -1,6 +1,6 @@
-@include('templeteController.Header')
-@include('templeteController.SideNave')
-@include('templeteController.TopNave')
+@include('DoctorDashboard.templeteController.Header')
+@include('DoctorDashboard.templeteController.SideNave')
+@include('DoctorDashboard.templeteController.TopNave')
 
 <style>
     .doctor-page * {
@@ -545,4 +545,4 @@
 
 </div>
 
-@include('templeteController.Footer')
+@include('DoctorDashboard.templeteController.Footer')
