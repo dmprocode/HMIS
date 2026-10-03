@@ -186,6 +186,41 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">
+                            <i class="mdi mdi-certificate me-1 text-primary"></i>
+                            Certificates <span class="text-danger">*</span>
+                        </label>
+
+                        <!-- Drag & Drop Area -->
+                        <div id="dropZone" class="border border-2 border-dashed rounded-3 p-4 text-center bg-light"
+                            style="cursor:pointer; transition: 0.3s;">
+                            <i class="mdi mdi-cloud-upload-outline fs-1 text-primary"></i>
+                            <p class="mb-1 fw-semibold">Drag & drop your certificates here</p>
+                            <small class="text-muted">or click to browse</small>
+                            <input type="file" id="certificatesInput" name="certificates[]" class="d-none"
+                                accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        </div>
+
+                        <!-- Preview List -->
+                        <ul id="fileList" class="list-group mt-3"></ul>
+
+                        <small class="text-muted d-block mt-2">
+                            <i class="mdi mdi-information-outline me-1"></i>
+                            Allowed: PDF, JPG, PNG • Max: 5MB each
+                        </small>
+                        <style>
+                            .border-dashed {
+                                border-style: dashed !important;
+                            }
+
+                            #dropZone.dragover {
+                                background-color: #e7f1ff !important;
+                                border-color: #0d6efd !important;
+                            }
+                        </style>
+                    </div>
                 </div>
 
                 <!-- STEP 5 -->
@@ -214,10 +249,13 @@
                             <input type="text" name="working_hours" class="form-control"
                                 placeholder="Mon–Fri, 8:00 AM – 4:00 PM">
                         </div>
-                        <div class="col-md-12">
-                            <label class="form-label fw-bold">On-Call Days</label>
-                            <input type="text" name="on_call_days" class="form-control" placeholder="Wed & Sat">
-                        </div>
+
+
+
+
+
+
+
                     </div>
                 </div>
 
@@ -345,6 +383,55 @@
         });
 
     });
+
+
+    const dropZone = document.getElementById('dropZone');
+    const input = document.getElementById('certificatesInput');
+    const fileList = document.getElementById('fileList');
+
+    // Click to browse
+    dropZone.addEventListener('click', () => input.click());
+
+    // Drag events
+    ['dragenter', 'dragover'].forEach(evt =>
+        dropZone.addEventListener(evt, e => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        })
+    );
+
+    ['dragleave', 'drop'].forEach(evt =>
+        dropZone.addEventListener(evt, e => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+        })
+    );
+
+    dropZone.addEventListener('drop', e => {
+        input.files = e.dataTransfer.files;
+        showFiles();
+    });
+
+    input.addEventListener('change', showFiles);
+
+    function showFiles() {
+        fileList.innerHTML = '';
+        Array.from(input.files).forEach((file, i) => {
+            let icon = file.type === 'application/pdf'
+                ? 'mdi-file-pdf-box text-danger'
+                : 'mdi-file-image text-success';
+
+            fileList.innerHTML += `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <i class="mdi ${icon} fs-5 me-2"></i>
+                        ${file.name}
+                        <small class="text-muted ms-2">(${(file.size / 1024).toFixed(1)} KB)</small>
+                    </span>
+                    <span class="badge bg-success">Ready</span>
+                </li>`;
+        });
+    }
 
 
 </script>
