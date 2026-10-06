@@ -1,6 +1,6 @@
-@include('templeteController.Header')
-@include('templeteController.SideNave')
-@include('templeteController.TopNave')
+@include('DoctorDashboard.templeteController.Header')
+@include('DoctorDashboard.templeteController.SideNave')
+@include('DoctorDashboard.templeteController.TopNave')
 
 <style>
     .doctor-profile * {
@@ -179,11 +179,13 @@
     {{-- ═══ PROFILE HEADER ═══ --}}
     <div class="profile-header mb-4">
         <div class="d-flex flex-wrap align-items-center gap-4 position-relative" style="z-index: 1;">
-
-            <div class="profile-avatar">JM</div>
+            @php
+                $initials = strtoupper(substr($doctor->admin->fname, 0, 1) . substr($doctor->admin->lname, 0, 1));
+            @endphp
+            <div class="profile-avatar">{{$initials}}</div>
 
             <div class="flex-grow-1">
-                <h3 class="mb-1 fw-bold text-white">Dr. Juma Mwangosi</h3>
+                <h3 class="mb-1 fw-bold text-white">Dr. {{$doctor->admin->fname}} {{$doctor->admin->lname}}</h3>
                 <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
                     <span class="badge bg-white bg-opacity-25 text-white rounded-pill px-3 py-1">
                         <i class="mdi mdi-identifier"></i> DOC-2024-00001
@@ -228,23 +230,23 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">First Name</span>
-                    <span class="info-value">Juma</span>
+                    <span class="info-value">{{$doctor->admin->fname}}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Last Name</span>
-                    <span class="info-value">Mwangosi</span>
+                    <span class="info-value">{{$doctor->admin->lname}}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Gender</span>
-                    <span class="info-value">Male</span>
+                    <span class="info-value">{{$doctor->admin->gender}}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Date of Birth</span>
-                    <span class="info-value">10 Mar 1985</span>
+                    <span class="info-value">{{$doctor->admin->dob->format('M-j-Y')}}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Age</span>
-                    <span class="info-value">41 years</span>
+                    <span class="info-value"> {{$doctor->admin->dob->age}} years</span>
                 </div>
             </div>
         </div>
@@ -261,7 +263,7 @@
                     <span class="info-label">Phone</span>
                     <span class="info-value">
                         <a href="tel:0712345678" class="text-decoration-none text-dark">
-                            <i class="mdi mdi-phone text-success"></i> 0712345678
+                            <i class="mdi mdi-phone text-success"></i> {{$doctor->admin->phone}}
                         </a>
                     </span>
                 </div>
@@ -269,19 +271,19 @@
                     <span class="info-label">Email</span>
                     <span class="info-value">
                         <a href="mailto:juma@hospital.com" class="text-decoration-none text-dark">
-                            <i class="mdi mdi-email text-info"></i> juma@hospital.com
+                            <i class="mdi mdi-email text-info"></i> {{$doctor->admin->username}}
                         </a>
                     </span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Address</span>
-                    <span class="info-value">Mtaa wa Uhuru, Dar es Salaam</span>
+                    <span class="info-value">{{$doctor->admin->address}}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Emergency Contact</span>
                     <span class="info-value">
                         <a href="tel:0787654321" class="text-decoration-none text-dark">
-                            <i class="mdi mdi-phone text-warning"></i> 0787654321
+                            <i class="mdi mdi-phone text-warning"></i> 0712138093
                         </a>
                     </span>
                 </div>
@@ -482,4 +484,4 @@
 
 </div>
 
-@include('templeteController.Footer')
+@include('DoctorDashboard.templeteController.Footer')

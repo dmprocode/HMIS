@@ -174,18 +174,9 @@
             </p>
 
             <!-- CTA Button -->
-            <a href="/" class="med-btn d-inline-block text-decoration-none">
-                <i class="mdi mdi-home-outline me-1"></i> Return to Dashboard
+            <a href="javascript:history.back()" class="med-btn d-inline-block text-decoration-none">
+                 <i class="mdi mdi-arrow-left"></i> Go back          
             </a>
-
-            <!-- Secondary action -->
-            <div class="mt-4">
-                <a href="javascript:history.back()" 
-                   class="med-text text-decoration-none">
-                    <i class="mdi mdi-arrow-left"></i> Go back
-                </a>
-            </div>
-
         </div>
     </div>
 

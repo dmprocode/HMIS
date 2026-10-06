@@ -29,9 +29,8 @@ use App\Http\Controllers\NurseController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/logout', [LogoutController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth:admin');  
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    
     
 
 
